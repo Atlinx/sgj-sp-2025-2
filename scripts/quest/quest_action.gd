@@ -30,6 +30,8 @@ var disabled: bool = false
 
 
 func _ready() -> void:
+	GameManager.global.on_save_state.connect(_on_save_state)
+	GameManager.global.on_load_state.connect(_on_load_state)
 	action_name = name
 	y_sort_enabled = true
 	prereq_sets = {}
@@ -41,6 +43,23 @@ func _ready() -> void:
 		if not set_name in prereq_sets:
 			prereq_sets[set_name] = []
 		prereq_sets[set_name].append(res[0])
+
+
+
+func _on_load_state():
+	var res = GameManager.global.quest_action_data.get(str(get_path()), null)
+	if res:
+		disabled = res["disabled"]
+
+
+func _on_save_state():
+	GameManager.global.quest_action_data[str(get_path())] = {
+		"disabled": disabled
+	}
+
+
+func enable_action():
+	pass
 
 
 func complete():

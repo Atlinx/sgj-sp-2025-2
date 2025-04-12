@@ -40,6 +40,8 @@ func _notification(what: int) -> void:
 
 
 func _ready():
+	if global != self:
+		return
 	reparent.call_deferred(get_tree().root)
 	for child in _quest_item_container.get_children():
 		child.queue_free()

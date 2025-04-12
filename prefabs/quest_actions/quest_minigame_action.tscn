@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cau4xfy0443ty"]
+
+[ext_resource type="Script" uid="uid://cfr27pc5f0emr" path="res://scripts/quest/quest_minigame_action.gd" id="1_f8qac"]
+[ext_resource type="PackedScene" uid="uid://cdskjubf08vu1" path="res://prefabs/target_quest_spot.tscn" id="2_bq6uf"]
+[ext_resource type="Script" uid="uid://e48uj5bkbkht" path="res://scripts/interact/interact_minigame.gd" id="3_sq0q3"]
+
+[node name="QuestMinigameAction" type="Node2D" node_paths=PackedStringArray("_interact_minigame")]
+script = ExtResource("1_f8qac")
+_interact_minigame = NodePath("TargetQuestSpot/InteractMinigame")
+metadata/_custom_type_script = "uid://cfr27pc5f0emr"
+
+[node name="TargetQuestSpot" parent="." instance=ExtResource("2_bq6uf")]
+
+[node name="InteractMinigame" type="Node2D" parent="TargetQuestSpot"]
+script = ExtResource("3_sq0q3")
+metadata/_custom_type_script = "uid://e48uj5bkbkht"

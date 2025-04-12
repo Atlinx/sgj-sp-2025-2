@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://gd7xxdx4861t"]
+[gd_scene load_steps=32 format=4 uid="uid://gd7xxdx4861t"]
 
 [ext_resource type="Script" uid="uid://cntgecfdu4f5g" path="res://scripts/map.gd" id="1_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbgi4"]
@@ -26,9 +26,10 @@
 [ext_resource type="PackedScene" uid="uid://cokowou4qfaag" path="res://prefabs/managers/transition_manager.tscn" id="21_jscy8"]
 [ext_resource type="PackedScene" uid="uid://cdskjubf08vu1" path="res://prefabs/target_quest_spot.tscn" id="21_y2ir2"]
 [ext_resource type="Script" uid="uid://tpetqqwwct8r" path="res://scripts/quest/quest_interact_action.gd" id="22_30iet"]
-[ext_resource type="Resource" uid="uid://tiiv8eyynjr2" path="res://quests/test_quest_2.tres" id="24_4o3w1"]
+[ext_resource type="PackedScene" uid="uid://cau4xfy0443ty" path="res://prefabs/quest_actions/quest_minigame_action.tscn" id="24_fq663"]
 [ext_resource type="PackedScene" uid="uid://dntuhqcyq6qj6" path="res://prefabs/managers/quests_manager.tscn" id="25_mkblt"]
 [ext_resource type="Script" uid="uid://dkh83b184ko0h" path="res://scripts/interact_ui.gd" id="26_6ek7f"]
+[ext_resource type="Script" uid="uid://dvomihqanpwq7" path="res://scripts/minigame_manager.gd" id="30_4qxv8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
 shader = ExtResource("4_tefeu")
@@ -492,6 +493,7 @@ position = Vector2(144, 24)
 [node name="IntroQuestRunner" type="Node2D" parent="World/Quests"]
 script = ExtResource("20_y2ir2")
 quest = ExtResource("21_5u2yt")
+reparent_children = true
 metadata/_custom_type_script = "uid://1h4e4u5r216m"
 
 [node name="StartDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner"]
@@ -512,221 +514,12 @@ timeline = ExtResource("7_vxglm")
 metadata/_custom_type_script = "uid://khek842hayn8"
 metadata/_edit_lock_ = true
 
-[node name="GotoPoint1" type="Node2D" parent="World/Quests/IntroQuestRunner"]
-position = Vector2(232, -8)
-script = ExtResource("22_30iet")
-mode = 2
-description = "Goto point desc"
-prereq_actions = Array[String](["StartDialogue"])
-metadata/_custom_type_script = "uid://tpetqqwwct8r"
-
-[node name="QuestInteractable" parent="World/Quests/IntroQuestRunner/GotoPoint1" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint1/QuestInteractable"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-metadata/_edit_lock_ = true
-
-[node name="QuestInteractable2" parent="World/Quests/IntroQuestRunner/GotoPoint1" instance=ExtResource("21_y2ir2")]
-position = Vector2(32, 0)
-is_oneshot = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint1/QuestInteractable2"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-
-[node name="GotoPoint2" type="Node2D" parent="World/Quests/IntroQuestRunner"]
-position = Vector2(-152, 120)
-script = ExtResource("22_30iet")
-mode = 1
-description = "Goto point 2 desc"
-prereq_actions = Array[String](["StartDialogue"])
-metadata/_custom_type_script = "uid://tpetqqwwct8r"
-
-[node name="GotoPoint2" parent="World/Quests/IntroQuestRunner/GotoPoint2" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint2/GotoPoint2"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-
-[node name="GotoPoint3" parent="World/Quests/IntroQuestRunner/GotoPoint2" instance=ExtResource("21_y2ir2")]
-position = Vector2(32, 0)
-is_oneshot = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint2/GotoPoint3"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-
-[node name="GotoPoint3" type="Node2D" parent="World/Quests/IntroQuestRunner"]
-position = Vector2(-88, 184)
-script = ExtResource("22_30iet")
-mode = 2
-description = "goto point 3 desc"
-prereq_actions = Array[String](["GotoPoint2"])
-metadata/_custom_type_script = "uid://tpetqqwwct8r"
-
-[node name="GotoPoint2" parent="World/Quests/IntroQuestRunner/GotoPoint3" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint3/GotoPoint2"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-metadata/_edit_lock_ = true
-
-[node name="GotoPoint4" type="Node2D" parent="World/Quests/IntroQuestRunner"]
-position = Vector2(168, 144)
-script = ExtResource("22_30iet")
-mode = 2
-description = "Goto point 4 desc"
+[node name="PlayTest" parent="World/Quests/IntroQuestRunner" instance=ExtResource("24_fq663")]
+position = Vector2(-8, 128)
+minigame = "test_minigame"
+description = "Test the game!"
 is_terminal = true
-prereq_actions = Array[String](["GotoPoint1:1", "GotoPoint3"])
-metadata/_custom_type_script = "uid://tpetqqwwct8r"
-
-[node name="GotoPoint2" parent="World/Quests/IntroQuestRunner/GotoPoint4" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint4/GotoPoint2"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-metadata/_edit_lock_ = true
-
-[node name="TestQuest2Runner" type="Node2D" parent="World/Quests"]
-position = Vector2(24, 168)
-script = ExtResource("20_y2ir2")
-quest = ExtResource("24_4o3w1")
-metadata/_custom_type_script = "uid://1h4e4u5r216m"
-
-[node name="StartDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner"]
-position = Vector2(8, 24)
-script = ExtResource("22_30iet")
-mode = 2
-description = "Start dialogue desc"
-choice_actions = Array[String](["GotoPoint1", "GotoPoint2"])
-metadata/_custom_type_script = "uid://tpetqqwwct8r"
-
-[node name="QuestInteractable" parent="World/Quests/TestQuest2Runner/StartDialogue" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/StartDialogue/QuestInteractable"]
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-metadata/_edit_lock_ = true
-
-[node name="GotoPoint1" type="Node2D" parent="World/Quests/TestQuest2Runner"]
-position = Vector2(232, -8)
-script = ExtResource("22_30iet")
-mode = 2
-description = "Goto point desc"
 prereq_actions = Array[String](["StartDialogue"])
-metadata/_custom_type_script = "uid://tpetqqwwct8r"
-
-[node name="QuestInteractable" parent="World/Quests/TestQuest2Runner/GotoPoint1" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint1/QuestInteractable"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-metadata/_edit_lock_ = true
-
-[node name="QuestInteractable2" parent="World/Quests/TestQuest2Runner/GotoPoint1" instance=ExtResource("21_y2ir2")]
-position = Vector2(32, 0)
-is_oneshot = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint1/QuestInteractable2"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-
-[node name="GotoPoint2" type="Node2D" parent="World/Quests/TestQuest2Runner"]
-position = Vector2(-152, 120)
-script = ExtResource("22_30iet")
-mode = 1
-description = "Goto point 2 desc"
-prereq_actions = Array[String](["StartDialogue"])
-metadata/_custom_type_script = "uid://tpetqqwwct8r"
-
-[node name="GotoPoint2" parent="World/Quests/TestQuest2Runner/GotoPoint2" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint2/GotoPoint2"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-
-[node name="GotoPoint3" parent="World/Quests/TestQuest2Runner/GotoPoint2" instance=ExtResource("21_y2ir2")]
-position = Vector2(32, 0)
-is_oneshot = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint2/GotoPoint3"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-
-[node name="GotoPoint3" type="Node2D" parent="World/Quests/TestQuest2Runner"]
-position = Vector2(-88, 184)
-script = ExtResource("22_30iet")
-mode = 2
-description = "goto point 3 desc"
-prereq_actions = Array[String](["GotoPoint2"])
-metadata/_custom_type_script = "uid://tpetqqwwct8r"
-
-[node name="GotoPoint2" parent="World/Quests/TestQuest2Runner/GotoPoint3" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint3/GotoPoint2"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-metadata/_edit_lock_ = true
-
-[node name="GotoPoint4" type="Node2D" parent="World/Quests/TestQuest2Runner"]
-position = Vector2(168, 144)
-script = ExtResource("22_30iet")
-mode = 2
-description = "Goto point 4 desc"
-is_terminal = true
-prereq_actions = Array[String](["GotoPoint1:1", "GotoPoint3"])
-metadata/_custom_type_script = "uid://tpetqqwwct8r"
-
-[node name="GotoPoint2" parent="World/Quests/TestQuest2Runner/GotoPoint4" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
-
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint4/GotoPoint2"]
-position = Vector2(-136, 56)
-script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
-metadata/_custom_type_script = "uid://khek842hayn8"
-metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50
@@ -769,3 +562,6 @@ script = ExtResource("26_6ek7f")
 [node name="GameManager" parent="." instance=ExtResource("20_yc10j")]
 
 [node name="TransitionManager" parent="." instance=ExtResource("21_jscy8")]
+
+[node name="MinigameManager" type="Node" parent="."]
+script = ExtResource("30_4qxv8")

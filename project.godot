@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="sgj-sp-2025-2"
-run/main_scene="uid://cwod1pbs0egui"
+run/main_scene="uid://gd7xxdx4861t"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,7 @@ buses/default_bus_layout="res://assets/sfx/default_bus_layout.tres"
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+GameGlobals="*res://scripts/game_globals.gd"
 
 [dialogic]
 

@@ -15,6 +15,7 @@ var actions: Array[QuestAction]
 				name = (quest.resource_path.get_file().get_basename() + "_runner").to_pascal_case()
 			else:
 				name = "(EMPTY) Runner"
+@export var reparent_children: bool
 
 
 # Maps action names to all the QuestActions 
@@ -31,6 +32,7 @@ func _ready() -> void:
 		quest = quest
 		return
 	quest.quest_started.connect(_on_quest_started)
+	quest.quest_completed.connect(_on_action_completed)
 	quest.action_completed.connect(_on_action_completed)
 	for child in get_children():
 		if child is QuestAction:
@@ -40,7 +42,8 @@ func _ready() -> void:
 				choices_to_root_action[choice].append(child)
 			child.completed.connect(_on_quest_completed_action.bind(child)) # Add completed actions to quest
 			actions.append(child)
-			child.reparent(Map.global.content)
+			if reparent_children and Map.global:
+				child.reparent(Map.global.content)
 	_on_action_completed()
 
 
@@ -71,10 +74,11 @@ func _on_action_completed():
 	# Update the visibility of any actions that now have all their prereqs satisfied
 	# TODO: Make this more efficient if necessary
 	for action in actions:
-		if not quest.started or action.disabled or quest.is_action_completed(action.action_name):
+		if quest.completed or (not quest.started) or action.disabled or quest.is_action_completed(action.action_name):
 			action.visible = false
 		else:
 			var active = quest.are_action_prereqs_satisfied(action.prereq_sets)
+			action.enable_action()
 			action.visible = active
 			if active:
 				quest.add_active_action(action.action_name, action.description)

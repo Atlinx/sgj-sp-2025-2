@@ -10,6 +10,8 @@ static var global: GameManager
 
 # Persistent data
 @export var map_player_tilepos: Vector2i
+# Map NodePaths of quest actions to their data 
+var quest_action_data: Dictionary
 
 var _initialized: bool
 
@@ -25,6 +27,8 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	if global != self:
+		return
 	reparent.call_deferred(get_tree().root)
 	TransitionManager.global.on_transition_out.connect(on_save_state.emit)
 	TransitionManager.global.on_transition_in.connect(on_load_state.emit)
@@ -37,6 +41,7 @@ func _ready() -> void:
 
 
 func reset():
+	quest_action_data.clear()
 	map_player_tilepos = Vector2i(0, -1)
 	QuestManager.global.reset()
 	QuestManager.global.reset()

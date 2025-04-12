@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://baxu8tyfvce5m" path="res://prefabs/quest_list_item.tscn" id="2_4xrmn"]
 [ext_resource type="Theme" uid="uid://ckhnb04es20vb" path="res://assets/game_theme.tres" id="3_ujd65"]
 
-[node name="QuestsManager" type="Node" node_paths=PackedStringArray("_nothing_label", "_quest_item_container", "_canvas_layer")]
+[node name="QuestManager" type="Node" node_paths=PackedStringArray("_nothing_label", "_quest_item_container", "_canvas_layer")]
 script = ExtResource("1_7oujl")
 _quest_item_prefab = ExtResource("2_4xrmn")
 _nothing_label = NodePath("CanvasLayer/QuestPanel/PanelContainer/VBoxContainer/NothingLabel")

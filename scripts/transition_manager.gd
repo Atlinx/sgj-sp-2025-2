@@ -35,6 +35,8 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	if global != self:
+		return
 	reparent.call_deferred(get_tree().root)
 	_overlay_texture.set_fill_amount(0.0)
 	_loading_label.modulate.a = 0.0

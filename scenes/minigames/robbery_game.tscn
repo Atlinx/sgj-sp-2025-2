@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=4 uid="uid://ce0bpnd32vv3k"]
 
 [ext_resource type="TileSet" uid="uid://cagocvkkqqagt" path="res://assets/map_tile_set.tres" id="2_40tx3"]
-[ext_resource type="Script" uid="uid://b6llvbw60terr" path="res://scenes/minigames/robbery_player.gd" id="3_2a12n"]
+[ext_resource type="Script" uid="uid://b6llvbw60terr" path="res://scripts/robbery_player.gd" id="3_2a12n"]
 [ext_resource type="TileSet" uid="uid://bjjcc8md0xw2h" path="res://assets/platformer_tile_set.tres" id="3_40tx3"]
 [ext_resource type="Texture2D" uid="uid://jxiv80bn0aai" path="res://assets/sprites/shadow_flat_small.png" id="4_ca4rs"]
 [ext_resource type="Texture2D" uid="uid://chryfj4cn7yl" path="res://assets/sprites/van.png" id="5_h4ajs"]
