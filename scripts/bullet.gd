@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Bullet
 
 
 func _physics_process(delta: float) -> void:

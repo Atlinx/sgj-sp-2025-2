@@ -1,11 +1,13 @@
 class_name RobberyPlayer
-extends Node2D
+extends CharacterBody2D
 
 
 @export var _flip_sprite: Node2D
 @export var _anim_player: AnimationPlayer
-
-
+@export var defualt_speed : float = 128
+var speed : float
+@export var slow_down_speed : float = 64
+@export var slow_down_time : float = 2
 var flip_tween: Tween
 var move_tween: Tween
 var tile_position: Vector2i
@@ -15,6 +17,8 @@ var is_moving: bool
 var prev_input_dir: Vector2
 var move_start_tile_position: Vector2i
 var press_time: float
+
+var slow_down : bool 
 
 const INPUT_DIRS = {
 	"p1_up": Vector2.UP,
@@ -29,7 +33,7 @@ func _ready() -> void:
 	tile_position = Map.global.local_to_map(position)
 	position = Map.global.map_to_local(tile_position)
 	_anim_player.play("idle")
-
+	speed = defualt_speed
 
 func _process(delta: float) -> void:
 	var input_dir = Vector2.ZERO
@@ -69,7 +73,7 @@ func _process(delta: float) -> void:
 			is_moving = true
 		else:
 			# Continually moving
-			position += input_dir.normalized() * delta * 128.0
+			position += input_dir.normalized() * delta * speed
 		press_time += delta
 		# Flip
 		if (input_dir.x > 0 and not facing_right) or (input_dir.x < 0 and facing_right):
@@ -82,3 +86,22 @@ func _process(delta: float) -> void:
 		# Update tile position
 		tile_position = Map.global.local_to_map(position)
 	prev_input_dir = input_dir
+	
+	move_and_slide()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.get_parent().is_in_group("litter"):
+		on_slow_down()
+		area.get_parent().queue_free()
+	if area.get_parent().is_in_group("bullet"):
+		_anim_player.play("demege")
+
+func on_slow_down():
+	speed = slow_down_speed
+	slow_down = true
+	_anim_player.play("slow_down")
+	await get_tree().create_timer(slow_down_time).timeout
+	speed = defualt_speed
+	slow_down = false
+	_anim_player.play("stop_slow_down")
