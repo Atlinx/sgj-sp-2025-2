@@ -345,6 +345,7 @@ position = Vector2(-673, -2)
 script = ExtResource("3_2a12n")
 _flip_sprite = NodePath("FlipSprite")
 _anim_player = NodePath("AnimationPlayer")
+slow_down_speed = 90.0
 
 [node name="Shadow" type="Sprite2D" parent="World/RobberyPlayer"]
 modulate = Color(0.0941176, 0.0784314, 0.145098, 0.407843)
@@ -434,7 +435,7 @@ position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_0l6gc")
 
 [node name="LitterTimer" type="Timer" parent="World/Robber"]
-wait_time = 0.8
+wait_time = 1.5
 autostart = true
 
 [connection signal="area_entered" from="World/RobberyPlayer/Area2D" to="World/RobberyPlayer" method="_on_area_2d_area_entered"]

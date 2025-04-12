@@ -34,6 +34,11 @@ var facing_right: bool = true
 @export var rotation_speed_range: Vector2 = Vector2(2.0, 5.0) # 旋转速度范围（弧度/秒）
 
 func _ready() -> void:
+	$ShootTimer.wait_time = randf_range(0.6,1.4)
+	$LitterTimer.wait_time = randf_range(0.6,1.4)
+	
+	
+	
 	#tile_position = Map.global.local_to_map(position)
 	#position = Map.global.map_to_local_center(tile_position)
 	_flip_sprite.scale.x = 1  
@@ -82,7 +87,7 @@ func _shoot():
 		return
 	var distance = _player.global_position - global_position
 	
-	if distance.length_squared() < 2000:
+	if distance.length_squared() < 4000:
 		return
 	# 创建子弹实例
 	var bullet_instance = bullet.instantiate()
@@ -101,7 +106,8 @@ func _shoot():
 
 func _on_shoot_timer_timeout():
 	var times : int = 0
-	while times < 3:
+	var ran_int : int = randi_range(2,5)
+	while times < ran_int:
 		_shoot()
 		times += 1
 		await get_tree().create_timer(0.2).timeout
@@ -110,10 +116,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("hand"):
 		queue_free()
 		pass
-
-
-
-
 
 
 
@@ -167,10 +169,7 @@ func throw_litter():
 	
 	# 动画完成后自动删除
 	tween.tween_callback(litter.land)
-	
 
-
-# 其他已有方法保持不变...
 
 func calculate_target_position() -> Vector2:
 	# 确保目标在玩家右侧且y在范围内
