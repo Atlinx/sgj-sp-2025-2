@@ -5,9 +5,11 @@ extends Node
 static var global: QuestManager
 
 
+@export var _hide_scenes: Array[String] = ["main_menu"]
 @export var _quest_item_prefab: PackedScene
 @export var _nothing_label: Control
 @export var _quest_item_container: Control
+@export var _canvas_layer: CanvasLayer
 var quests: Array[Quest]
 var completed_quests: Dictionary[Quest, bool] = {}
 var quest_items: Dictionary[Quest, QuestListItem] = {}
@@ -23,6 +25,12 @@ func _enter_tree() -> void:
 		queue_free()
 		return
 	global = self
+	for file_name in DirAccess.get_files_at("res://quests/"):
+		if file_name.get_extension() in ["import", "tres"]:
+			file_name = file_name.replace(".import", "").replace(".tres", "")
+			var quest = load("res://quests/" + file_name + ".tres")
+			if quest is Quest:
+				quests.append(quest)
 
 
 func _notification(what: int) -> void:
@@ -35,18 +43,22 @@ func _ready():
 	reparent.call_deferred(get_tree().root)
 	for child in _quest_item_container.get_children():
 		child.queue_free()
-	for file_name in DirAccess.get_files_at("res://quests/"):
-		if file_name.get_extension() == "import":
-			file_name = file_name.replace('.import', '')
-			var quest = load("res://quests/" + file_name)
-			if quest is Quest:
-				quests.append(quest)
-	_update_quests()
+	TransitionManager.global.on_transition_in.connect(_on_transition_in)
 
+
+func _on_transition_in():
+	_canvas_layer.visible = TransitionManager.global.current_scene not in _hide_scenes
+	
 
 func reset():
 	for quest in quests:
 		quest.reset()
+	for item in quest_items.values():
+		item.queue_free()
+	quest_items.clear()
+	completed_quests.clear()
+	_on_transition_in()
+	_update_quests()
 
 
 func _are_quest_prereqs_satisfied(quest: Quest):
@@ -64,9 +76,10 @@ func are_quest_prereqs_satisfied(quest: Quest) -> bool:
 
 
 func _update_quests():
-	for quest in quests:	
-		if are_quest_prereqs_satisfied(quest):
-			# Create quest item
+	for quest in quests:
+		if not quest.completed and are_quest_prereqs_satisfied(quest):
+			# Start the quest and create a quest item
+			quest.start()
 			var inst = _quest_item_prefab.instantiate() as QuestListItem
 			_quest_item_container.add_child(inst)
 			inst.construct(quest)
@@ -76,7 +89,9 @@ func _update_quests():
 
 
 func _on_quest_item_completed(quest_item: QuestListItem):
+	# Rest of code is handled in QuestRunner (it is a little jank :sob:)
 	quest_items.erase(quest_item.quest)
+	completed_quests[quest_item.quest] = true
 	_update_quests()
 
 

@@ -33,6 +33,7 @@ func _ready() -> void:
 	Dialogic.Styles.get_layout_node().visible = false
 	Dialogic.timeline_started.connect(_on_timeline_started)
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
+	reset()
 
 
 func reset():

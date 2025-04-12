@@ -30,6 +30,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		quest = quest
 		return
+	quest.quest_started.connect(_on_quest_started)
 	quest.action_completed.connect(_on_action_completed)
 	for child in get_children():
 		if child is QuestAction:
@@ -43,26 +44,40 @@ func _ready() -> void:
 	_on_action_completed()
 
 
+func _on_quest_started():
+	_on_action_completed()
+
+
 func _on_quest_completed_action(quest_action: QuestAction):
-	quest.add_completed_action(quest_action.name, quest_action.is_terminal)
+	quest._completed_actions[quest_action.action_name] = true
+	quest.active_actions.erase(quest_action.action_name)
+	# Remove any actions that are now disabled
+	for action in actions:
+		var another_choice_taken = false
+		if action.action_name in choices_to_root_action:
+			for _root_action in choices_to_root_action[action.action_name]:
+				var root_action = _root_action as QuestAction
+				for choice_action in root_action.choice_actions:
+					if quest.is_action_completed(choice_action):
+						another_choice_taken = true
+						break
+		action.disabled = another_choice_taken
+		if action.disabled:
+			quest.active_actions.erase(action.action_name)
+	quest.add_completed_action(quest_action.action_name, quest_action.is_terminal)
 
 
 func _on_action_completed():
 	# Update the visibility of any actions that now have all their prereqs satisfied
 	# TODO: Make this more efficient if necessary
 	for action in actions:
-		var another_choice_taken = false
-		if action.name in choices_to_root_action:
-			for _root_action in choices_to_root_action[action.name]:
-				var root_action = _root_action as QuestAction
-				for choice_action in root_action.choice_actions:
-					if quest.is_action_completed(choice_action):
-						another_choice_taken = true
-						break
-		if quest.is_action_completed(action.name) or another_choice_taken:
+		if not quest.started or action.disabled or quest.is_action_completed(action.action_name):
 			action.visible = false
 		else:
-			action.visible = quest.are_action_prereqs_satisfied(action.prereq_sets)
+			var active = quest.are_action_prereqs_satisfied(action.prereq_sets)
+			action.visible = active
+			if active:
+				quest.add_active_action(action.action_name, action.description)
 
 
 func _process(delta: float) -> void:

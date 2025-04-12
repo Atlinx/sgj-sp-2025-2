@@ -6,6 +6,8 @@ extends Node2D
 signal completed()
 
 
+var action_name: String
+@export_multiline var description: String
 # Will completing this action count as completing the quest?
 @export var is_terminal: bool
 # Actions that this action depends on
@@ -28,6 +30,7 @@ var disabled: bool = false
 
 
 func _ready() -> void:
+	action_name = name
 	y_sort_enabled = true
 	prereq_sets = {}
 	for action in prereq_actions:
