@@ -9,7 +9,6 @@ extends CharacterBody2D
 @export var tentacle_speed: float = 800.0  # 触手伸展速度
 var score : int
 var flip_tween: Tween
-var move_tween: Tween
 var tile_position: Vector2i
 var facing_right: bool
 var is_moving: bool
@@ -65,17 +64,10 @@ func _process(delta: float) -> void:
 				elif prev_input_dir.y > DEAD_ZONE:
 					axis_dir += Vector2i.DOWN
 				tile_position = move_start_tile_position + axis_dir
-			if move_tween:
-				move_tween.kill()
-			move_tween = create_tween()
-			#move_tween.tween_property(self, "position", Map.global.map_to_local_center(tile_position), 0.2) \
-				#.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	else:
 		if not is_moving:
 			_anim_player.play("move")
 			press_time = 0
-			if move_tween:
-				move_tween.kill()
 			move_start_tile_position = tile_position
 			is_moving = true
 		else:
