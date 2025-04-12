@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjuux0uc1jgr6"]
+
+[ext_resource type="Texture2D" uid="uid://chxoc4db48vij" path="res://assets/sprites/shadow_flat_large.png" id="1_l0f8o"]
+[ext_resource type="Texture2D" uid="uid://010h5t11s51k" path="res://assets/sprites/tree.png" id="2_a4ng0"]
+[ext_resource type="AnimationLibrary" uid="uid://b0t3kunethfn6" path="res://assets/animations/bobbing.tres" id="3_a4ng0"]
+[ext_resource type="Script" uid="uid://cwhxa3lh8rlbp" path="res://scripts/default_animation_player.gd" id="4_3xb55"]
+
+[node name="Tree" type="Node2D"]
+
+[node name="Container" type="Node2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="Container"]
+modulate = Color(0.228, 0.268133, 0.4, 0.588235)
+texture = ExtResource("1_l0f8o")
+
+[node name="Sprite2D" type="Sprite2D" parent="Container"]
+position = Vector2(0, -16)
+texture = ExtResource("2_a4ng0")
+
+[node name="DefaultAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"bobbing": ExtResource("3_a4ng0")
+}
+script = ExtResource("4_3xb55")
+default_animation = "bobbing/idle"

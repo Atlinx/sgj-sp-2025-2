@@ -4,6 +4,7 @@ extends Node2D
 
 @export var _flip_sprite: Node2D
 @export var _anim_player: AnimationPlayer
+@export var _move_sfx: RandomAudioStreamPlayer
 
 
 var flip_tween: Tween
@@ -15,6 +16,7 @@ var is_moving: bool
 var prev_input_dir: Vector2
 var move_start_tile_position: Vector2i
 var press_time: float
+var sfx_time: float
 
 const INPUT_DIRS = {
 	"p1_up": Vector2.UP,
@@ -63,6 +65,7 @@ func _process(delta: float) -> void:
 			_anim_player.play("move")
 			# Just pressed
 			press_time = 0
+			sfx_time = 0
 			if move_tween:
 				move_tween.kill()
 			move_start_tile_position = tile_position
@@ -82,3 +85,9 @@ func _process(delta: float) -> void:
 		# Update tile position
 		tile_position = Map.global.local_to_map(position)
 	prev_input_dir = input_dir
+	if is_moving:
+		if sfx_time >= 0:
+			sfx_time -= delta
+		else:
+			sfx_time = 0.2
+			_move_sfx.play_random()

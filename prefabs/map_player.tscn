@@ -1,0 +1,205 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxnip5pqv7sbd"]
+
+[ext_resource type="Script" uid="uid://dnbml0broy75h" path="res://scripts/map_player.gd" id="1_gk70u"]
+[ext_resource type="Texture2D" uid="uid://jxiv80bn0aai" path="res://assets/sprites/shadow_flat_small.png" id="2_51h1t"]
+[ext_resource type="Texture2D" uid="uid://chryfj4cn7yl" path="res://assets/sprites/car.png" id="3_g5e50"]
+[ext_resource type="AudioStream" uid="uid://bvjnst7cvfgjd" path="res://assets/sfx/move.wav" id="4_51h1t"]
+[ext_resource type="Script" uid="uid://d2awsnmjpmio2" path="res://scripts/random_audio_stream_player.gd" id="5_g5e50"]
+
+[sub_resource type="Animation" id="Animation_tefeu"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipSprite/InnerSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipSprite/InnerSprite:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipSprite/InnerSprite:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipSprite/InnerSprite:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlipSprite/InnerSprite:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-4, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_o6xl0"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipSprite/InnerSprite:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3, 3),
+"points": PackedFloat32Array(1, -0.0666667, 0, 0.0666667, 0, 1.1, -0.0666667, 0, 0.0666667, 0, 1.1, -0.05, 0, 0.05, 0, 1, -0.05, 0, 0.05, 0),
+"times": PackedFloat32Array(0, 0.266667, 0.8, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipSprite/InnerSprite:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipSprite/InnerSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_tbgi4"]
+resource_name = "move"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipSprite/InnerSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3, 3),
+"points": PackedFloat32Array(0, -0.025, 0, 0.025, 0, -0.1, -0.0666667, 0.000891119, 0.0666667, -0.000891119, 0.1, -0.0666667, 0.00033417, 0.0666667, -0.00033417, -6.96185e-05, -0.0333333, -0.000139237, 0.0333333, 0.000139237),
+"times": PackedFloat32Array(0, 0.1, 0.233333, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipSprite/InnerSprite:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.0333436, 0, 0.0333436, 0, 1, -0.0916564, 0, 0.0916564, 0),
+"times": PackedFloat32Array(0, 0.100041, 0.3)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipSprite/InnerSprite:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(3, 0, 0),
+"points": PackedFloat32Array(0.9, -0.1, -0.000427365, 0.1, 0.000427365, 1.1, -0.1, -0.000142455, 0.1, 0.000142455, 0.9, -0.1, 0.00242168, 0.1, -0.00242168),
+"times": PackedFloat32Array(0, 0.166667, 0.3)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipSprite/InnerSprite:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 0, -0.15, 0, 0.15, 0, 0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.133333, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlipSprite/InnerSprite:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(3, 3, 3),
+"points": PackedFloat32Array(-3, -0.0333333, 0, 0.0333333, 0, -6, -0.0333333, 0, 0.0333333, 0, -3, -0.0416667, 0, 0.0416667, 0),
+"times": PackedFloat32Array(0, 0.133333, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o6xl0"]
+_data = {
+&"RESET": SubResource("Animation_tefeu"),
+&"idle": SubResource("Animation_o6xl0"),
+&"move": SubResource("Animation_tbgi4")
+}
+
+[node name="MapPlayer" type="Node2D" node_paths=PackedStringArray("_flip_sprite", "_anim_player", "_move_sfx")]
+script = ExtResource("1_gk70u")
+_flip_sprite = NodePath("FlipSprite")
+_anim_player = NodePath("AnimationPlayer")
+_move_sfx = NodePath("MoveSfx")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.0941176, 0.0784314, 0.145098, 0.407843)
+position = Vector2(0, -5)
+texture = ExtResource("2_51h1t")
+offset = Vector2(0, 5)
+
+[node name="FlipSprite" type="Node2D" parent="."]
+
+[node name="InnerSprite" type="Sprite2D" parent="FlipSprite"]
+position = Vector2(0, -4)
+texture = ExtResource("3_g5e50")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_o6xl0")
+}
+
+[node name="MoveSfx" type="AudioStreamPlayer" parent="."]
+script = ExtResource("5_g5e50")
+clips = Array[AudioStream]([ExtResource("4_51h1t")])
+volume_offset = -10.0
+pitch_range = Vector2(0.9, 1.3)
+delay_range = Vector2(0, 0.05)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]

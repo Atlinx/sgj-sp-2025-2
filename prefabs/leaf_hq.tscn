@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://q734vlkfng74"]
+
+[ext_resource type="PackedScene" uid="uid://cm6qno24a8nuo" path="res://prefabs/empty_hq.tscn" id="1_0fdlc"]
+[ext_resource type="Texture2D" uid="uid://dyhcreg8j8r34" path="res://assets/sprites/leaf_hq.png" id="2_0fdlc"]
+
+[node name="LeafHQ" instance=ExtResource("1_0fdlc")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_0fdlc")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvs3644hdi8c8"]
+
+[ext_resource type="PackedScene" uid="uid://cm6qno24a8nuo" path="res://prefabs/empty_hq.tscn" id="1_iy7re"]
+[ext_resource type="Texture2D" uid="uid://bqx2yoggktkps" path="res://assets/sprites/moon_hq.png" id="2_iy7re"]
+
+[node name="MoonHQ" instance=ExtResource("1_iy7re")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_iy7re")

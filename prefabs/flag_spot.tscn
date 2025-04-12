@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ykygs6k7nn0d"]
+
+[ext_resource type="Script" uid="uid://cwhxa3lh8rlbp" path="res://scripts/default_animation_player.gd" id="1_0w6hj"]
+[ext_resource type="Texture2D" uid="uid://cysi7qtno50jl" path="res://assets/sprites/24_circle.png" id="1_5150k"]
+[ext_resource type="Texture2D" uid="uid://bhkwbonsx2e0p" path="res://assets/sprites/flag_spot.png" id="2_0w6hj"]
+[ext_resource type="AnimationLibrary" uid="uid://b0t3kunethfn6" path="res://assets/animations/bobbing.tres" id="4_j8pvt"]
+
+[node name="FlagSpot" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Container" type="Node2D" parent="."]
+position = Vector2(0, -4)
+
+[node name="Shadow" type="Sprite2D" parent="Container"]
+modulate = Color(0.228, 0.268133, 0.4, 0.52549)
+position = Vector2(0, 4)
+texture = ExtResource("1_5150k")
+
+[node name="Sprite2D" type="Sprite2D" parent="Container"]
+position = Vector2(0, -4)
+texture = ExtResource("2_0w6hj")
+
+[node name="DefaultAnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+&"bobbing": ExtResource("4_j8pvt")
+}
+script = ExtResource("1_0w6hj")
+default_animation = "bobbing/idle"

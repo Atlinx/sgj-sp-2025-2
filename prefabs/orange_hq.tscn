@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://lnewytxh62kp"]
+
+[ext_resource type="Texture2D" uid="uid://chxoc4db48vij" path="res://assets/sprites/shadow_flat_large.png" id="1_p74m3"]
+[ext_resource type="Texture2D" uid="uid://dyowv48aoqo3g" path="res://assets/sprites/orange_jobs_hq.png" id="2_sk611"]
+
+[node name="OrangeHQ" type="Node2D"]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.228, 0.268133, 0.4, 0.588235)
+position = Vector2(0, -2)
+texture = ExtResource("1_p74m3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+texture = ExtResource("2_sk611")

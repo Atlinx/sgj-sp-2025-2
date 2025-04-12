@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3mgl2e1vcl8f"]
+
+[ext_resource type="PackedScene" uid="uid://cm6qno24a8nuo" path="res://prefabs/empty_hq.tscn" id="1_obm7n"]
+[ext_resource type="Texture2D" uid="uid://bgk0hqgfvxunu" path="res://assets/sprites/heart_hq.png" id="2_qdibk"]
+
+[node name="HeartHQ" instance=ExtResource("1_obm7n")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_qdibk")
