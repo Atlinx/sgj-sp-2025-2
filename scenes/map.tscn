@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://gd7xxdx4861t"]
+[gd_scene load_steps=29 format=4 uid="uid://gd7xxdx4861t"]
 
 [ext_resource type="Script" uid="uid://cntgecfdu4f5g" path="res://scripts/map.gd" id="1_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbgi4"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cokowou4qfaag" path="res://prefabs/managers/transition_manager.tscn" id="21_jscy8"]
 [ext_resource type="PackedScene" uid="uid://cdskjubf08vu1" path="res://prefabs/target_quest_spot.tscn" id="21_y2ir2"]
 [ext_resource type="Script" uid="uid://tpetqqwwct8r" path="res://scripts/quest/quest_interact_action.gd" id="22_30iet"]
+[ext_resource type="PackedScene" uid="uid://dntuhqcyq6qj6" path="res://prefabs/managers/quests_manager.tscn" id="25_mkblt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
 shader = ExtResource("4_tefeu")
@@ -50,7 +51,7 @@ script = ExtResource("1_jyhfs")
 content = NodePath("../Content")
 _bg_layer = NodePath("GrassConcreteLayer")
 _invisible_wall_layer = NodePath("InvisibleWallLayer")
-_quit_button = NodePath("../../CanvasLayer/UI/MarginContainer/QuitButton")
+_quit_button = NodePath("../../CanvasLayer/QuitPanel/QuitButton")
 _canvas_layer = NodePath("../../CanvasLayer")
 metadata/_edit_lock_ = true
 
@@ -601,35 +602,25 @@ metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50
-visible = false
 
-[node name="UI" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="QuitPanel" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 192.0
+offset_bottom = 95.0
 theme = ExtResource("20_4b7dj")
-metadata/_edit_lock_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 metadata/_edit_lock_ = true
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/UI/MarginContainer"]
+[node name="QuitButton" type="Button" parent="CanvasLayer/QuitPanel"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Quit"
 metadata/_edit_lock_ = true
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("_transition_manager") instance=ExtResource("20_yc10j")]
-_transition_manager = NodePath("../TransitionManager")
+[node name="QuestsManager" parent="." instance=ExtResource("25_mkblt")]
+
+[node name="GameManager" parent="." instance=ExtResource("20_yc10j")]
 
 [node name="TransitionManager" parent="." instance=ExtResource("21_jscy8")]

@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://baxu8tyfvce5m"]
+
+[ext_resource type="Script" uid="uid://ce066cada08eb" path="res://scripts/quest_list_item.gd" id="1_08f12"]
+[ext_resource type="Theme" uid="uid://ckhnb04es20vb" path="res://assets/game_theme.tres" id="1_ddb0g"]
+[ext_resource type="Script" uid="uid://d2awsnmjpmio2" path="res://scripts/random_audio_stream_player.gd" id="3_ypk86"]
+[ext_resource type="AudioStream" uid="uid://ceavi1j4ogil0" path="res://assets/sfx/select.wav" id="4_0hlsr"]
+
+[node name="QuestListItem" type="VBoxContainer" node_paths=PackedStringArray("_title_label", "_description_label", "_checkbox", "_complete_sfx")]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 143.0
+offset_bottom = 24.0
+theme = ExtResource("1_ddb0g")
+theme_override_constants/separation = 0
+script = ExtResource("1_08f12")
+_title_label = NodePath("HSplitContainer/TitleLabel")
+_description_label = NodePath("MarginContainer/DescriptionLabel")
+_checkbox = NodePath("HSplitContainer/CheckBox")
+_complete_sfx = NodePath("CompleteSfx")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CheckBox" type="CheckBox" parent="HSplitContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+text = "Visit grandma"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "Visit grandma at her house down town near the bakery"
+autowrap_mode = 3
+
+[node name="CompleteSfx" type="AudioStreamPlayer" parent="."]
+script = ExtResource("3_ypk86")
+clips = Array[AudioStream]([ExtResource("4_0hlsr")])
+metadata/_custom_type_script = "uid://d2awsnmjpmio2"

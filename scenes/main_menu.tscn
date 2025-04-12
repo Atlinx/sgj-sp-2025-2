@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dedf30xq6vfdx"]
+[gd_scene load_steps=11 format=3 uid="uid://dedf30xq6vfdx"]
 
 [ext_resource type="PackedScene" uid="uid://br63gulbpuafg" path="res://prefabs/managers/game_manager.tscn" id="1_ekxnf"]
 [ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbmy8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cyqodukwifogu" path="res://scripts/main_menu.gd" id="4_rtw2f"]
 [ext_resource type="Shader" uid="uid://cj46nokvsus6o" path="res://assets/shaders/tile_scroll.gdshader" id="4_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://pxs34mkvh128" path="res://assets/sprites/main.png" id="5_8ln24"]
+[ext_resource type="PackedScene" uid="uid://dntuhqcyq6qj6" path="res://prefabs/managers/quests_manager.tscn" id="9_jk1qb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]
 shader = ExtResource("4_tbmy8")
@@ -109,7 +110,8 @@ mouse_filter = 2
 texture = ExtResource("5_8ln24")
 expand_mode = 3
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("_transition_manager") instance=ExtResource("1_ekxnf")]
-_transition_manager = NodePath("../TransitionManager")
+[node name="QuestsManager" parent="." instance=ExtResource("9_jk1qb")]
+
+[node name="GameManager" parent="." instance=ExtResource("1_ekxnf")]
 
 [node name="TransitionManager" parent="." instance=ExtResource("2_bqqt6")]
