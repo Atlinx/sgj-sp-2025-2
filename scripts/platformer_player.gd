@@ -70,3 +70,7 @@ func _physics_process(delta):
 
 	# 执行物理运动
 	move_and_slide()
+
+
+func _on_the_end_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

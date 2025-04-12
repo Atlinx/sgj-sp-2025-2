@@ -32,10 +32,13 @@ const DEAD_ZONE = 0.01
 func _ready() -> void:
 	#tile_position = Map.global.local_to_map(position)
 	#position = Map.global.map_to_local(tile_position)
+	$Hand.hide()
 	_anim_player.play("idle")
 	speed = defualt_speed
 
 func _process(delta: float) -> void:
+	if Input.is_action_pressed("p1_interact"):
+		_anim_player.play("stab")
 	var input_dir = Vector2.ZERO
 	for input in INPUT_DIRS:
 		if Input.is_action_pressed(input):
@@ -96,6 +99,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		area.get_parent().queue_free()
 	if area.get_parent().is_in_group("bullet"):
 		_anim_player.play("demege")
+		var tween = create_tween()
+		var bu_volocity = area.get_parent().velocity
+		tween.tween_property(self,"position:x",position.x + bu_volocity.x*0.1,0.1 )
 
 func on_slow_down():
 	speed = slow_down_speed

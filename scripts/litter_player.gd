@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var tentacle_scene: PackedScene  # 触手预制场景
 @export var inertia_factor: float = 0.2  # 惯性影响系数
 @export var tentacle_speed: float = 800.0  # 触手伸展速度
+@export var win_score = 20
 var score : int
 var flip_tween: Tween
 var move_tween: Tween
@@ -38,8 +39,10 @@ func _ready() -> void:
 	_prev_position = position
 
 func _process(delta: float) -> void:
+	if win_score >= 20:
+		pass
 	$"../../CanvasLayer/Label".text = "score: "+str(score)
-
+	
 	# 计算当前速度
 	velocity = (position - _prev_position) 
 	_prev_position = position

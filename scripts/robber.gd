@@ -46,6 +46,9 @@ func _ready() -> void:
 	shoot_timer.start()
 
 func _process(delta: float) -> void:
+	print(global_position.x)
+	if global_position.x > 7500:
+		return
 	# 只处理水平移动
 	position += Vector2.RIGHT * horizontal_speed * delta
 	#tile_position = Map.global.local_to_map(position)
@@ -104,8 +107,9 @@ func _on_shoot_timer_timeout():
 		await get_tree().create_timer(0.2).timeout
 		
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("hitbox") or area.get_parent().is_in_group("hand"):
+	if area.get_parent().is_in_group("hand"):
 		queue_free()
+		pass
 
 
 
