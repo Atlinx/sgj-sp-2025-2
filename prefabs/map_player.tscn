@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxnip5pqv7sbd"]
+[gd_scene load_steps=13 format=3 uid="uid://dxnip5pqv7sbd"]
 
 [ext_resource type="Script" uid="uid://dnbml0broy75h" path="res://scripts/map_player.gd" id="1_gk70u"]
 [ext_resource type="Texture2D" uid="uid://jxiv80bn0aai" path="res://assets/sprites/shadow_flat_small.png" id="2_51h1t"]
-[ext_resource type="Texture2D" uid="uid://chryfj4cn7yl" path="res://assets/sprites/car.png" id="3_g5e50"]
+[ext_resource type="Texture2D" uid="uid://chryfj4cn7yl" path="res://assets/sprites/van.png" id="3_g5e50"]
 [ext_resource type="AudioStream" uid="uid://bvjnst7cvfgjd" path="res://assets/sfx/move.wav" id="4_51h1t"]
 [ext_resource type="Script" uid="uid://d2awsnmjpmio2" path="res://scripts/random_audio_stream_player.gd" id="5_g5e50"]
+[ext_resource type="AudioStream" uid="uid://ceavi1j4ogil0" path="res://assets/sfx/select.wav" id="6_sb3sa"]
 
 [sub_resource type="Animation" id="Animation_tefeu"]
 length = 0.001
@@ -168,11 +169,19 @@ _data = {
 &"move": SubResource("Animation_tbgi4")
 }
 
-[node name="MapPlayer" type="Node2D" node_paths=PackedStringArray("_flip_sprite", "_anim_player", "_move_sfx")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_g5e50"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sb3sa"]
+radius = 8.0
+
+[node name="MapPlayer" type="CharacterBody2D" node_paths=PackedStringArray("_flip_sprite", "_anim_player", "_move_sfx", "_interact_sfx", "_interact_area")]
 script = ExtResource("1_gk70u")
 _flip_sprite = NodePath("FlipSprite")
 _anim_player = NodePath("AnimationPlayer")
 _move_sfx = NodePath("MoveSfx")
+_interact_sfx = NodePath("InteractSfx")
+_interact_area = NodePath("InteractArea2D")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0.0941176, 0.0784314, 0.145098, 0.407843)
@@ -202,4 +211,18 @@ volume_offset = -10.0
 pitch_range = Vector2(0.9, 1.3)
 delay_range = Vector2(0, 0.05)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="InteractSfx" type="AudioStreamPlayer" parent="."]
+script = ExtResource("5_g5e50")
+clips = Array[AudioStream]([ExtResource("6_sb3sa")])
+volume_offset = -10.0
+pitch_range = Vector2(0.9, 1.3)
+delay_range = Vector2(0, 0.05)
+
+[node name="InteractArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
+shape = SubResource("CircleShape2D_g5e50")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sb3sa")
+debug_color = Color(0.7, 0.415625, 0, 0.42)

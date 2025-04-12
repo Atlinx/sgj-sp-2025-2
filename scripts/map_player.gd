@@ -1,10 +1,12 @@
 class_name MapPlayer
-extends Node2D
+extends CharacterBody2D
 
 
 @export var _flip_sprite: Node2D
 @export var _anim_player: AnimationPlayer
 @export var _move_sfx: RandomAudioStreamPlayer
+@export var _interact_sfx: RandomAudioStreamPlayer
+@export var _interact_area: Area2D
 
 
 var flip_tween: Tween
@@ -27,13 +29,43 @@ const INPUT_DIRS = {
 
 const DEAD_ZONE = 0.01
 
+var in_dialogue: bool
+var can_interact: bool :
+	get:
+		return not in_dialogue
+
 func _ready() -> void:
 	tile_position = Map.global.local_to_map(position)
-	position = Map.global.map_to_local(tile_position)
 	_anim_player.play("idle")
+	
+	# Load default style
+	Dialogic.Styles.load_style()
+	Dialogic.timeline_started.connect(_on_timeline_started)
+	Dialogic.timeline_ended.connect(_on_timeline_ended)
 
 
-func _process(delta: float) -> void:
+func _on_timeline_started():
+	Dialogic.Styles.get_layout_node().visible = true
+	in_dialogue = true
+
+
+func _on_timeline_ended():
+	in_dialogue = false
+	await Dialogic.clear(DialogicGameHandler.ClearFlags.FULL_CLEAR)
+
+
+func _physics_process(delta: float) -> void:
+	# Don't process input if we can't interact
+	if not can_interact:
+		return
+	
+	if Input.is_action_just_released("p1_interact"):
+		for area in _interact_area.get_overlapping_areas():
+			if area.get_parent() is Interactable:
+				var interactable = area.get_parent() as Interactable
+				interactable.interact()
+				_interact_sfx.play_random()
+				break
 	var input_dir = Vector2.ZERO
 	for input in INPUT_DIRS:
 		if Input.is_action_pressed(input):
@@ -54,7 +86,10 @@ func _process(delta: float) -> void:
 					axis_dir += Vector2i.UP
 				elif prev_input_dir.y > DEAD_ZONE:
 					axis_dir += Vector2i.DOWN
-				tile_position = move_start_tile_position + axis_dir
+				var new_tile_position = move_start_tile_position + axis_dir
+				# Make sure new tile is empty before trying to lerp player to new tile
+				if Map.global.is_tile_empty(new_tile_position):
+					tile_position = new_tile_position
 			if move_tween:
 				move_tween.kill()
 			move_tween = create_tween()
@@ -72,7 +107,8 @@ func _process(delta: float) -> void:
 			is_moving = true
 		else:
 			# Continually moving
-			position += input_dir.normalized() * delta * 128.0
+			velocity = input_dir.normalized() * 128.0
+			move_and_slide()
 		press_time += delta
 		# Flip
 		if (input_dir.x > 0 and not facing_right) or (input_dir.x < 0 and facing_right):

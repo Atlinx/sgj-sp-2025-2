@@ -1,0 +1,11 @@
+join mc_van center
+mc_van: Hello everyone!
+mc_van: This is a test of the dialogue system
+mc_van: I'm moving to the otherside!
+join mc_van right
+- Make a choice
+- One
+	mc_van: I'm saying 1
+- Two
+	mc_van: I'm saying 2
+An thus, the story ended
