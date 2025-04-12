@@ -183,7 +183,7 @@ size = Vector2(14, 13)
 script = ExtResource("1_6vjdd")
 level_layer = NodePath("World/Map/BGLayer")
 litter_scenes = Array[PackedScene]([ExtResource("2_1kjpx"), ExtResource("6_aefbl"), ExtResource("4_k4dh2"), ExtResource("5_h3jrh"), ExtResource("6_divjf"), ExtResource("7_vjmcc")])
-litter_amounts = 100
+litter_amounts = 40
 
 [node name="World" type="Node2D" parent="."]
 
@@ -229,8 +229,6 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/LitterPlayer"]
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_nvpxh")
-
-[node name="Litter" parent="." instance=ExtResource("6_aefbl")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
