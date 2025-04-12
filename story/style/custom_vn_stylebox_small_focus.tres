@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dq05kvi5ov2pv"]
+
+[ext_resource type="Texture2D" uid="uid://cm7805xdn8itp" path="res://assets/sprites/vn_stylebox_small.png" id="1_kjuux"]
+
+[resource]
+texture = ExtResource("1_kjuux")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+modulate_color = Color(0.877604, 0.877604, 0.877604, 1)

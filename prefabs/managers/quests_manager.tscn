@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dntuhqcyq6qj6"]
+
+[ext_resource type="Script" uid="uid://okn4n0wwfyln" path="res://scripts/quest_manager.gd" id="1_7oujl"]
+[ext_resource type="PackedScene" uid="uid://baxu8tyfvce5m" path="res://prefabs/quest_list_item.tscn" id="2_4xrmn"]
+[ext_resource type="Theme" uid="uid://ckhnb04es20vb" path="res://assets/game_theme.tres" id="3_ujd65"]
+
+[node name="QuestsManager" type="Node" node_paths=PackedStringArray("_nothing_label", "_quest_item_container", "_canvas_layer")]
+script = ExtResource("1_7oujl")
+_quest_item_prefab = ExtResource("2_4xrmn")
+_nothing_label = NodePath("CanvasLayer/QuestPanel/PanelContainer/VBoxContainer/NothingLabel")
+_quest_item_container = NodePath("CanvasLayer/QuestPanel/PanelContainer/VBoxContainer/QuestItemContainer")
+_canvas_layer = NodePath("CanvasLayer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 50
+
+[node name="QuestPanel" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -384.0
+offset_bottom = 126.0
+grow_horizontal = 0
+theme = ExtResource("3_ujd65")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/QuestPanel"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/QuestPanel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/QuestPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"MediumLabel"
+text = "Quests"
+
+[node name="NothingLabel" type="Label" parent="CanvasLayer/QuestPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "Nothing more to do, for now..."
+
+[node name="QuestItemContainer" type="VBoxContainer" parent="CanvasLayer/QuestPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuestListItem" parent="CanvasLayer/QuestPanel/PanelContainer/VBoxContainer/QuestItemContainer" instance=ExtResource("2_4xrmn")]
+layout_mode = 2
+
+[node name="QuestListItem2" parent="CanvasLayer/QuestPanel/PanelContainer/VBoxContainer/QuestItemContainer" instance=ExtResource("2_4xrmn")]
+layout_mode = 2

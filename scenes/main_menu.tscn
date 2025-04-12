@@ -1,0 +1,117 @@
+[gd_scene load_steps=11 format=3 uid="uid://dedf30xq6vfdx"]
+
+[ext_resource type="PackedScene" uid="uid://br63gulbpuafg" path="res://prefabs/managers/game_manager.tscn" id="1_ekxnf"]
+[ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbmy8"]
+[ext_resource type="PackedScene" uid="uid://cokowou4qfaag" path="res://prefabs/managers/transition_manager.tscn" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://deins5dhlu5ww" path="res://assets/sprites/trans_overlay_big.png" id="3_bqqt6"]
+[ext_resource type="Theme" uid="uid://ckhnb04es20vb" path="res://assets/game_theme.tres" id="3_wu84c"]
+[ext_resource type="Script" uid="uid://cyqodukwifogu" path="res://scripts/main_menu.gd" id="4_rtw2f"]
+[ext_resource type="Shader" uid="uid://cj46nokvsus6o" path="res://assets/shaders/tile_scroll.gdshader" id="4_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://pxs34mkvh128" path="res://assets/sprites/main.png" id="5_8ln24"]
+[ext_resource type="PackedScene" uid="uid://dntuhqcyq6qj6" path="res://prefabs/managers/quests_manager.tscn" id="9_jk1qb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]
+shader = ExtResource("4_tbmy8")
+shader_parameter/fill_amount = 0.5
+shader_parameter/size = Vector2(1, 1)
+shader_parameter/is_tiling = false
+
+[node name="MainMenu" type="Node"]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_tbmy8")
+volume_db = -10.0
+autoplay = true
+bus = &"BGM"
+
+[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("_start_button", "_quit_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_wu84c")
+script = ExtResource("4_rtw2f")
+_start_button = NodePath("MarginContainer/HBoxContainer/VBoxContainer/StartButton")
+_quit_button = NodePath("MarginContainer/HBoxContainer/VBoxContainer/QuitButton")
+
+[node name="BG" type="TextureRect" parent="MainMenu"]
+material = SubResource("ShaderMaterial_jk1qb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_bqqt6")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 128
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="HBoxContainer" parent="MainMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label2" type="Label" parent="MainMenu/MarginContainer/HBoxContainer/VBoxContainer/Title"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_type_variation = &"BigLabel"
+text = "VAN"
+
+[node name="Label3" type="Label" parent="MainMenu/MarginContainer/HBoxContainer/VBoxContainer/Title"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_vertical = 8
+theme_type_variation = &"BigLabel"
+theme_override_font_sizes/font_size = 28
+text = "ish"
+
+[node name="Padding" type="Control" parent="MainMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MainMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "start"
+
+[node name="QuitButton" type="Button" parent="MainMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "quit"
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(720, 720)
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+texture = ExtResource("5_8ln24")
+expand_mode = 3
+
+[node name="QuestsManager" parent="." instance=ExtResource("9_jk1qb")]
+
+[node name="GameManager" parent="." instance=ExtResource("1_ekxnf")]
+
+[node name="TransitionManager" parent="." instance=ExtResource("2_bqqt6")]

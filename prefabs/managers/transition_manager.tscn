@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://cokowou4qfaag"]
+
+[ext_resource type="Script" uid="uid://ce3civxsleuya" path="res://scripts/transition_manager.gd" id="1_v0v3r"]
+[ext_resource type="Shader" uid="uid://kns8vo4ai3xo" path="res://assets/shaders/transition.gdshader" id="2_dkbvv"]
+[ext_resource type="Texture2D" uid="uid://blyhyawl1gr4n" path="res://assets/sprites/gradient_trans_3_lines.png" id="3_3qouv"]
+[ext_resource type="Texture2D" uid="uid://deins5dhlu5ww" path="res://assets/sprites/trans_overlay_big.png" id="4_neto4"]
+[ext_resource type="Script" uid="uid://bdm56ex4e4doe" path="res://scripts/overlay_texture.gd" id="5_pmusn"]
+[ext_resource type="FontFile" uid="uid://dnxidtvebr88e" path="res://assets/fonts/uni_sans/Uni Sans Heavy Italic.otf" id="6_qppnq"]
+[ext_resource type="Script" uid="uid://d2awsnmjpmio2" path="res://scripts/random_audio_stream_player.gd" id="7_jtare"]
+[ext_resource type="AudioStream" uid="uid://5mc61jdowkii" path="res://assets/sfx/trans_in.wav" id="8_cct7c"]
+[ext_resource type="AudioStream" uid="uid://beph6nr5g5sp8" path="res://assets/sfx/trans_out.wav" id="9_wc315"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6dy"]
+shader = ExtResource("2_dkbvv")
+shader_parameter/fill_amount = 0.5
+shader_parameter/size = Vector2(1944, 1104)
+shader_parameter/trans_texture = ExtResource("3_3qouv")
+shader_parameter/is_tiling = true
+
+[node name="TransitionManager" type="Node" node_paths=PackedStringArray("_overlay_texture", "_transition_in_sfx", "_transition_out_sfx", "_loading_label", "_canvas_layer")]
+script = ExtResource("1_v0v3r")
+_overlay_texture = NodePath("CanvasLayer/OverlayTexture")
+_transition_in_sfx = NodePath("TransInSFX")
+_transition_out_sfx = NodePath("TransOutSFX")
+_loading_label = NodePath("CanvasLayer/LoadingLabel")
+_canvas_layer = NodePath("CanvasLayer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+visible = false
+
+[node name="OverlayTexture" type="TextureRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_eb6dy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("4_neto4")
+stretch_mode = 1
+script = ExtResource("5_pmusn")
+
+[node name="LoadingLabel" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -436.0
+offset_top = -193.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Label" type="Label" parent="CanvasLayer/LoadingLabel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_qppnq")
+theme_override_font_sizes/font_size = 64
+text = "LOADING..."
+
+[node name="TransInSFX" type="AudioStreamPlayer" parent="."]
+script = ExtResource("7_jtare")
+clips = Array[AudioStream]([ExtResource("8_cct7c")])
+volume_offset = -15.0
+metadata/_custom_type_script = "uid://d2awsnmjpmio2"
+
+[node name="TransOutSFX" type="AudioStreamPlayer" parent="."]
+script = ExtResource("7_jtare")
+clips = Array[AudioStream]([ExtResource("9_wc315")])
+volume_offset = -15.0
+metadata/_custom_type_script = "uid://d2awsnmjpmio2"

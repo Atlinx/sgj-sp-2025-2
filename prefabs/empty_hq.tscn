@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm6qno24a8nuo"]
+
+[ext_resource type="PackedScene" uid="uid://wi8knbnn62ax" path="res://prefabs/office.tscn" id="1_sno3m"]
+[ext_resource type="Texture2D" uid="uid://due23cn3djh5h" path="res://assets/sprites/empty_hq.png" id="2_4e5be"]
+[ext_resource type="Texture2D" uid="uid://dpvvw8q5phu37" path="res://assets/sprites/shadow_flat_huge.png" id="2_75ftx"]
+
+[node name="EmptyHQ" instance=ExtResource("1_sno3m")]
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource("2_75ftx")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -56)
+texture = ExtResource("2_4e5be")
+offset = Vector2(0, -4)

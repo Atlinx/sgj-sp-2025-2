@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://df8624371rjvp"]
+
+[ext_resource type="Texture2D" uid="uid://cysi7qtno50jl" path="res://assets/sprites/24_circle.png" id="1_1x4la"]
+[ext_resource type="Script" uid="uid://bs2u07swlttw8" path="res://scripts/interact/interactable.gd" id="1_f4u2v"]
+[ext_resource type="Texture2D" uid="uid://ba0e1xcsppt2n" path="res://assets/sprites/target.png" id="2_1x4la"]
+[ext_resource type="AnimationLibrary" uid="uid://b0t3kunethfn6" path="res://assets/animations/bobbing.tres" id="3_4tt31"]
+[ext_resource type="Script" uid="uid://cwhxa3lh8rlbp" path="res://scripts/default_animation_player.gd" id="4_d8ayk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4tt31"]
+radius = 8.0
+
+[node name="TargetSpot" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_f4u2v")
+
+[node name="Container" type="Node2D" parent="."]
+position = Vector2(0, -4)
+
+[node name="Shadow" type="Sprite2D" parent="Container"]
+visible = false
+modulate = Color(0.228, 0.268133, 0.4, 0.588235)
+position = Vector2(0, 4)
+texture = ExtResource("1_1x4la")
+
+[node name="Sprite2D" type="Sprite2D" parent="Container"]
+modulate = Color(1, 1, 1, 0.584314)
+position = Vector2(0, 4)
+texture = ExtResource("2_1x4la")
+
+[node name="DefaultAnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+&"bobbing": ExtResource("3_4tt31")
+}
+script = ExtResource("4_d8ayk")
+default_animation = "bobbing/idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4tt31")
+debug_color = Color(0, 0.595, 0.7, 0)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://wi8knbnn62ax"]
+
+[ext_resource type="Texture2D" uid="uid://chxoc4db48vij" path="res://assets/sprites/shadow_flat_large.png" id="1_uxyhb"]
+[ext_resource type="Texture2D" uid="uid://wh1tr1saeiq2" path="res://assets/sprites/office.png" id="2_hqle4"]
+
+[node name="Office" type="Node2D"]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.228, 0.268133, 0.4, 0.588235)
+position = Vector2(0, -2)
+texture = ExtResource("1_uxyhb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+texture = ExtResource("2_hqle4")
+offset = Vector2(0, -2)

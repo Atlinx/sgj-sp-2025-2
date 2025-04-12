@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://dog4n3tirmxnu"]
+
+[ext_resource type="Script" uid="uid://sn0ok1t3ildi" path="res://scripts/quest/quest.gd" id="1_33ymv"]
+
+[resource]
+script = ExtResource("1_33ymv")
+name = "Intro Quest"
+description = "Baby's first steps!"
+prerequisites = Array[ExtResource("1_33ymv")]([])
+metadata/_custom_type_script = "uid://sn0ok1t3ildi"

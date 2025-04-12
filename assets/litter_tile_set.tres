@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://c38rpij43nbhc" path="res://assets/sprites/grass.png" id="1_aarh5"]
 [ext_resource type="Texture2D" uid="uid://bjhcifo7s6hin" path="res://assets/sprites/road.png" id="2_4neh6"]
-[ext_resource type="PackedScene" uid="uid://cm5xrl643rut2" path="res://scenes/litter/large_bottle.tscn" id="3_ooqxg"]
-[ext_resource type="PackedScene" uid="uid://cvqb30febwfxj" path="res://scenes/litter/large_pastic.tscn" id="4_k2glm"]
-[ext_resource type="PackedScene" uid="uid://c6d2rsv3dsedg" path="res://scenes/litter/small_apple.tscn" id="5_tptds"]
-[ext_resource type="PackedScene" uid="uid://bhlji23guit8c" path="res://scenes/litter/small_banana.tscn" id="6_7heuy"]
-[ext_resource type="PackedScene" uid="uid://daxpa62yafo63" path="res://scenes/litter/small_can.tscn" id="7_pxswj"]
-[ext_resource type="PackedScene" uid="uid://cng6ths2d5w6i" path="res://scenes/litter/small_cigarette.tscn" id="8_im43y"]
+[ext_resource type="PackedScene" uid="uid://cm5xrl643rut2" path="res://prefabs/minigames/litter/large_bottle.tscn" id="3_ooqxg"]
+[ext_resource type="PackedScene" uid="uid://cvqb30febwfxj" path="res://prefabs/minigames/litter/large_pastic.tscn" id="4_k2glm"]
+[ext_resource type="PackedScene" uid="uid://c6d2rsv3dsedg" path="res://prefabs/minigames/litter/small_apple.tscn" id="5_tptds"]
+[ext_resource type="PackedScene" uid="uid://bhlji23guit8c" path="res://prefabs/minigames/litter/small_banana.tscn" id="6_7heuy"]
+[ext_resource type="PackedScene" uid="uid://daxpa62yafo63" path="res://prefabs/minigames/litter/small_can.tscn" id="7_pxswj"]
+[ext_resource type="PackedScene" uid="uid://cng6ths2d5w6i" path="res://prefabs/minigames/litter/small_cigarette.tscn" id="8_im43y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_esgl4"]
 resource_name = "Grass"

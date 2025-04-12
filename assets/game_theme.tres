@@ -1,0 +1,118 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://ckhnb04es20vb"]
+
+[ext_resource type="FontFile" uid="uid://bta80fepvll38" path="res://assets/fonts/joystix monospace.otf" id="1_s1n0q"]
+[ext_resource type="FontFile" uid="uid://c3utt4347vbex" path="res://assets/fonts/nihonium/Nihonium113.ttf" id="1_tgk0f"]
+[ext_resource type="FontFile" uid="uid://deh51bf4oeuug" path="res://assets/fonts/uni_sans/Uni Sans Heavy.otf" id="2_j6cuv"]
+[ext_resource type="FontFile" uid="uid://dfy61dmp7xhiv" path="res://assets/fonts/pixy/PIXY.otf" id="2_ty2no"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4oq3s"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.208, 0.228533, 0.32, 0.745098)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6cuv"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.227451, 0.266667, 0.4, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty2no"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.352941, 0.411765, 0.533333, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ercdv"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.207843, 0.227451, 0.317647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaxgn"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.2508, 0.293867, 0.38, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lbybe"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.207843, 0.227451, 0.317647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8j7d"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.207843, 0.227451, 0.317647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[resource]
+default_font = ExtResource("1_tgk0f")
+default_font_size = 32
+BigLabel/base_type = &"Label"
+BigLabel/font_sizes/font_size = 64
+BigLabel/fonts/font = ExtResource("1_s1n0q")
+Button/styles/disabled = SubResource("StyleBoxFlat_4oq3s")
+Button/styles/focus = SubResource("StyleBoxFlat_j6cuv")
+Button/styles/hover = SubResource("StyleBoxFlat_ty2no")
+Button/styles/normal = SubResource("StyleBoxFlat_ercdv")
+Button/styles/pressed = SubResource("StyleBoxFlat_aaxgn")
+MediumLabel/base_type = &"Label"
+MediumLabel/font_sizes/font_size = 32
+MediumLabel/fonts/font = ExtResource("1_s1n0q")
+Panel/styles/panel = SubResource("StyleBoxFlat_lbybe")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_a8j7d")
+SmallLabel/base_type = &"Label"
+SmallLabel/constants/line_spacing = -4
+SmallLabel/font_sizes/font_size = 22
+SmallLabel/fonts/font = ExtResource("2_ty2no")
+UnisansLabel/base_type = &"Label"
+UnisansLabel/font_sizes/font_size = 64
+UnisansLabel/fonts/font = ExtResource("2_j6cuv")

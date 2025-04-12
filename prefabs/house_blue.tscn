@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsngldseafhts"]
+
+[ext_resource type="PackedScene" uid="uid://wi8knbnn62ax" path="res://prefabs/office.tscn" id="1_menq0"]
+[ext_resource type="Texture2D" uid="uid://clcygcku556vl" path="res://assets/sprites/house_blue.png" id="2_menq0"]
+
+[node name="HouseBlue" instance=ExtResource("1_menq0")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_menq0")

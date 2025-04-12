@@ -1,0 +1,44 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(1, 1, 1, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "default",
+"sound_moods": {
+"default": {
+"mode": 1,
+"name": "default",
+"pitch_base": 1.0,
+"pitch_variance": 0.1,
+"skip_characters": 5.0,
+"sound_path": "res://assets/sfx/voices/voice_1.wav",
+"volume_base": -10.0,
+"volume_variance": 0.0
+}
+},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "normal",
+&"description": "",
+&"display_name": "Van-ish",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"normal": {
+"export_overrides": {
+"image": "\"res://assets/sprites/portrait_van.png\""
+},
+"ignore_char_scale": false,
+"mirror": false,
+"offset": Vector2(0, -128),
+"scale": 7.5,
+"scene": "",
+"sound_mood": "default"
+}
+},
+&"scale": 1.0
+}
