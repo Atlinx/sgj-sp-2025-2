@@ -20,6 +20,8 @@ var move_start_tile_position: Vector2i
 var press_time: float
 var sfx_time: float
 
+var slow_down : bool 
+
 const INPUT_DIRS = {
 	"p1_up": Vector2.UP,
 	"p1_down": Vector2.DOWN,

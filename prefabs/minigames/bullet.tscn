@@ -5,7 +5,7 @@
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_mkf8s"]
 
-[node name="Bullet" type="CharacterBody2D"]
+[node name="Bullet" type="CharacterBody2D" groups=["bullet"]]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_y25gk")
 
