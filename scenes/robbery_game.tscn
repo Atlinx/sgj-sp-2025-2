@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dnbml0broy75h" path="res://scripts/robbery_player.gd" id="3_fqnfq"]
 [ext_resource type="Texture2D" uid="uid://jxiv80bn0aai" path="res://assets/sprites/shadow_flat_small.png" id="4_ca4rs"]
 [ext_resource type="Texture2D" uid="uid://chryfj4cn7yl" path="res://assets/sprites/car.png" id="5_h4ajs"]
-[ext_resource type="Script" uid="uid://bmbp3wpgd5kaj" path="res://scripts/map_robber.gd" id="6_abehs"]
+[ext_resource type="Script" uid="uid://bmbp3wpgd5kaj" path="res://scripts/robber.gd" id="6_abehs"]
 [ext_resource type="PackedScene" uid="uid://llamuryyajce" path="res://scenes/bullet.tscn" id="7_rlgn1"]
 
 [sub_resource type="Animation" id="Animation_tefeu"]

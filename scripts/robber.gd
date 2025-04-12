@@ -1,4 +1,4 @@
-class_name AutoNPC
+class_name Robber
 extends Node2D
 
 @export var _flip_sprite: Node2D
