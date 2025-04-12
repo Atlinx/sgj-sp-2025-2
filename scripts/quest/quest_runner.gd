@@ -17,6 +17,15 @@ var actions: Array[QuestAction]
 				name = "(EMPTY) Runner"
 
 
+# Maps action names to all the QuestActions 
+# that use a given action as a choice.
+#
+# NOTE: There can be multiple actions
+# that point to one action as a choice,
+# therefore we have to use an array
+var choices_to_root_action: Dictionary[String, Array]
+
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		quest = quest
@@ -24,21 +33,33 @@ func _ready() -> void:
 	quest.action_completed.connect(_on_action_completed)
 	for child in get_children():
 		if child is QuestAction:
-			child.completed.connect(_on_quest_completed_action.bind(child.name)) # Add completed actions to quest
+			for choice in child.choice_actions:
+				if choice not in choices_to_root_action:
+					choices_to_root_action[choice] = [] 
+				choices_to_root_action[choice].append(child)
+			child.completed.connect(_on_quest_completed_action.bind(child)) # Add completed actions to quest
 			actions.append(child)
 			child.reparent(Map.global.content)
 	_on_action_completed()
 
 
-func _on_quest_completed_action(quest: QuestAction):
-	quest.add_completed_action(quest.name, quest.is_terminal)
+func _on_quest_completed_action(quest_action: QuestAction):
+	quest.add_completed_action(quest_action.name, quest_action.is_terminal)
 
 
 func _on_action_completed():
 	# Update the visibility of any actions that now have all their prereqs satisfied
 	# TODO: Make this more efficient if necessary
 	for action in actions:
-		if quest.is_action_completed(action.name):
+		var another_choice_taken = false
+		if action.name in choices_to_root_action:
+			for _root_action in choices_to_root_action[action.name]:
+				var root_action = _root_action as QuestAction
+				for choice_action in root_action.choice_actions:
+					if quest.is_action_completed(choice_action):
+						another_choice_taken = true
+						break
+		if quest.is_action_completed(action.name) or another_choice_taken:
 			action.visible = false
 		else:
 			action.visible = quest.are_action_prereqs_satisfied(action.prereq_sets)
@@ -97,6 +118,7 @@ func _draw_arrow(from: Node2D, to: Node2D, color: Color = Color.ORANGE):
 	var global_to_local = global_transform.affine_inverse()
 	var from_pos = global_to_local * from.global_position
 	var to_pos = global_to_local * to.global_position
+	color.a = 0.5
 	
 	from_pos += (to_pos - from_pos).normalized() * 8
 	to_pos += (from_pos - to_pos).normalized() * 8

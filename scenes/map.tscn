@@ -495,6 +495,7 @@ metadata/_custom_type_script = "uid://1h4e4u5r216m"
 position = Vector2(8, 24)
 script = ExtResource("22_30iet")
 mode = 2
+choice_actions = Array[String](["GotoPoint1", "GotoPoint2"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
 [node name="QuestInteractable" parent="World/Quests/IntroQuestRunner/StartDialogue" instance=ExtResource("21_y2ir2")]
@@ -566,7 +567,7 @@ metadata/_custom_type_script = "uid://khek842hayn8"
 position = Vector2(-88, 184)
 script = ExtResource("22_30iet")
 mode = 2
-prereq_actions = Array[String](["GotoPoint2", "GotoPoint1"])
+prereq_actions = Array[String](["GotoPoint2"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
 [node name="GotoPoint2" parent="World/Quests/IntroQuestRunner/GotoPoint3" instance=ExtResource("21_y2ir2")]
@@ -581,7 +582,7 @@ metadata/_custom_type_script = "uid://khek842hayn8"
 metadata/_edit_lock_ = true
 
 [node name="GotoPoint4" type="Node2D" parent="World/Quests/IntroQuestRunner"]
-position = Vector2(168, 120)
+position = Vector2(168, 144)
 script = ExtResource("22_30iet")
 mode = 2
 prereq_actions = Array[String](["GotoPoint1:1", "GotoPoint3"])
@@ -599,6 +600,7 @@ metadata/_custom_type_script = "uid://khek842hayn8"
 metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 50
 visible = false
 
 [node name="UI" type="Control" parent="CanvasLayer"]

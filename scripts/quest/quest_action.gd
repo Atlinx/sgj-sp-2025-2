@@ -8,7 +8,11 @@ signal completed()
 
 # Will completing this action count as completing the quest?
 @export var is_terminal: bool
+# Actions that this action depends on
 @export var prereq_actions: Array[String]
+# Set of actions that are mutually exclusive from each other
+# If one action is chosen, the remaining actions are locked out
+@export var choice_actions: Array[String]
 # Maps a set name to a set of prereqs that must be satisfied together
 # { "path1": [name1, name2], "path2": [name3, name4], "path3": [name5] }
 #
@@ -18,6 +22,7 @@ signal completed()
 #
 # This effectively lets us model branching actions.
 var prereq_sets: Dictionary[String, Array]
+var disabled: bool = false
 
 # TODO NOW: Add exclusive prereqs
 

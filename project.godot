@@ -78,6 +78,10 @@ window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
+[dotnet]
+
+project/assembly_name="sgj-sp-2025-2"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
