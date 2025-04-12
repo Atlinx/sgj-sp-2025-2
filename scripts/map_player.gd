@@ -13,7 +13,7 @@ var flip_tween: Tween
 var move_tween: Tween
 var tile_position: Vector2i
 
-var facing_right: bool
+var facing_right: bool = true
 var is_moving: bool
 var prev_input_dir: Vector2
 var move_start_tile_position: Vector2i
@@ -38,20 +38,27 @@ func _ready() -> void:
 	tile_position = Map.global.local_to_map(position)
 	_anim_player.play("idle")
 	
-	# Load default style
-	Dialogic.Styles.load_style()
 	Dialogic.timeline_started.connect(_on_timeline_started)
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
+	GameManager.global.on_save_state.connect(_on_save_state)
+	GameManager.global.on_load_state.connect(_on_load_state)
+
+
+func _on_save_state():
+	GameManager.global.map_player_tilepos = tile_position
+
+
+func _on_load_state():
+	tile_position = GameManager.global.map_player_tilepos
+	position = Map.global.local_to_map(tile_position)
 
 
 func _on_timeline_started():
-	Dialogic.Styles.get_layout_node().visible = true
 	in_dialogue = true
 
 
 func _on_timeline_ended():
 	in_dialogue = false
-	await Dialogic.clear(DialogicGameHandler.ClearFlags.FULL_CLEAR)
 
 
 func _physics_process(delta: float) -> void:

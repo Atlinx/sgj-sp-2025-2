@@ -7,10 +7,12 @@ static var global: Map
 
 @export var _bg_layer: TileMapLayer 
 @export var _invisible_wall_layer: TileMapLayer
+@export var _quit_button: Button
 
 
 func _ready() -> void:
 	_invisible_wall_layer.visible = false
+	_quit_button.pressed.connect(TransitionManager.global.transition_to.bind("main_menu"))
 
 
 func map_to_local(cell: Vector2) -> Vector2:
