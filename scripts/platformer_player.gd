@@ -30,12 +30,12 @@ func _physics_process(delta):
 	# 地面跳跃
 	if jump_pressed and is_on_floor():
 		velocity.y = jump_force
-		_anim_player.play("jump")
+		#_anim_player.play("jump")
 		can_double_jump = true
 	# 二段跳
 	elif jump_pressed and can_double_jump and not is_on_floor():
 		velocity.y = jump_force * 0.8
-		_anim_player.play("double_jump")
+		#_anim_player.play("double_jump")
 		can_double_jump = false
 	# 短按跳跃
 	if jump_released and velocity.y < jump_force * 0.5:
@@ -57,16 +57,16 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, target_speed, delta * 5.0 * air_control)
 
 	# 动画状态机
-	if is_on_floor():
-		if abs(velocity.x) > 10.0:
-			_anim_player.play("run")
-		else:
-			_anim_player.play("idle")
-	else:
-		if velocity.y < 0:
-			_anim_player.play("jump")
-		else:
-			_anim_player.play("fall")
+	#if is_on_floor():
+		#if abs(velocity.x) > 10.0:
+			#_anim_player.play("run")
+		#else:
+			#_anim_player.play("idle")
+	#else:
+		#if velocity.y < 0:
+			#_anim_player.play("jump")
+		#else:
+			#_anim_player.play("fall")
 
 	# 执行物理运动
 	move_and_slide()

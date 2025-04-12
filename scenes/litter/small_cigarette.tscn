@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cng6ths2d5w6i"]
+
+[ext_resource type="Script" uid="uid://c78y3fn8ib7ts" path="res://scripts/litter.gd" id="1_ebfqg"]
+[ext_resource type="Texture2D" uid="uid://rsh3awxvd2nv" path="res://assets/sprites/litterSmall_CigaretteButt.png" id="2_ujhoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iui8w"]
+size = Vector2(20, 10)
+
+[node name="Cigarette" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ebfqg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_ujhoi")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(10, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-10, 0)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_iui8w")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

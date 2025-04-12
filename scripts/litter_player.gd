@@ -1,6 +1,6 @@
 # MapPlayer.gd
 class_name LitterPlayer
-extends Node2D
+extends CharacterBody2D
 
 @export var _flip_sprite: Node2D
 @export var _anim_player: AnimationPlayer
@@ -16,9 +16,10 @@ var is_moving: bool
 var prev_input_dir: Vector2
 var move_start_tile_position: Vector2i
 var press_time: float
+var extending_tenta : bool = false
 
 # 新增速度跟踪相关变量
-var velocity: Vector2 = Vector2.ZERO
+
 var _prev_position: Vector2 = Vector2.ZERO
 
 const INPUT_DIRS = {
@@ -38,10 +39,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	$"../../CanvasLayer/Label".text = "score: "+str(score)
-	
-	
+
+	print(extending_tenta)
 	# 计算当前速度
-	velocity = (position - _prev_position) / delta
+	velocity = (position - _prev_position) 
 	_prev_position = position
 	
 	# 原有移动逻辑
@@ -95,12 +96,19 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		_spawn_tentacle()
 
+	move_and_slide()
+
+
 func _spawn_tentacle():
 	if !tentacle_scene:
 		push_warning("No tentacle scene assigned!")
 		return
-	
+	if extending_tenta:
+		return
 	# 获取鼠标位置
+	extending_tenta = true
+	cool_down_tanta()
+	
 	var mouse_pos = get_global_mouse_position()
 	
 	# 计算惯性偏移（当前速度方向影响目标位置）
@@ -113,3 +121,8 @@ func _spawn_tentacle():
 	
 	# 初始化触手
 	tentacle.init_tentacle(global_position,target_position)
+
+func cool_down_tanta():
+	if extending_tenta:
+		await get_tree().create_timer(tentacle_scene.instantiate().extend_duration*2).timeout
+		extending_tenta = false
