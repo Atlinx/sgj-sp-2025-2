@@ -14,7 +14,7 @@
 "pitch_variance": 0.1,
 "skip_characters": 5.0,
 "sound_path": "res://assets/sfx/voices/voice_1.wav",
-"volume_base": -8.0,
+"volume_base": -10.0,
 "volume_variance": 0.0
 }
 },

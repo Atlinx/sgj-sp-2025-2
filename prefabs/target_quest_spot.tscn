@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdskjubf08vu1"]
+
+[ext_resource type="PackedScene" uid="uid://df8624371rjvp" path="res://prefabs/target_spot.tscn" id="1_ydv8i"]
+[ext_resource type="Texture2D" uid="uid://dysxvxp48s5dt" path="res://assets/sprites/target_quest.png" id="2_jarkb"]
+
+[node name="TargetQuestSpot" instance=ExtResource("1_ydv8i")]
+
+[node name="Sprite2D" parent="Container" index="1"]
+texture = ExtResource("2_jarkb")

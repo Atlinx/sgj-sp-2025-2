@@ -6,4 +6,5 @@ extends Interact
 
 
 func _on_interact():
+	interactable.finish_interact()
 	TransitionManager.global.transition_to("minigames/" + minigame_scene)

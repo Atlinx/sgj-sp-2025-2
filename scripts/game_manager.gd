@@ -13,6 +13,8 @@ static var global: GameManager
 @export_category("Dependencies")
 @export var _transition_manager: TransitionManager
 
+var quests: Array[Quest]
+
 var _initialized: bool
 
 
@@ -35,10 +37,19 @@ func _ready() -> void:
 	Dialogic.Styles.get_layout_node().visible = false
 	Dialogic.timeline_started.connect(_on_timeline_started)
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
+	
+	for file_name in DirAccess.get_files_at("res://quests/"):
+		if file_name.get_extension() == "import":
+			file_name = file_name.replace('.import', '')
+			var quest = load("res://quests/" + file_name)
+			if quest is Quest:
+				quests.append(quest)
 
 
 func reset():
 	map_player_tilepos = Vector2i(0, -1)
+	for quest in quests:
+		quest.reset()
 
 
 func _on_timeline_started():

@@ -39,3 +39,4 @@ default_animation = "bobbing/idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_4tt31")
+debug_color = Color(0, 0.595, 0.7, 0)

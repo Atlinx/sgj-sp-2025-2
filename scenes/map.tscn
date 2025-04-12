@@ -1,10 +1,9 @@
-[gd_scene load_steps=25 format=4 uid="uid://gd7xxdx4861t"]
+[gd_scene load_steps=28 format=4 uid="uid://gd7xxdx4861t"]
 
 [ext_resource type="Script" uid="uid://cntgecfdu4f5g" path="res://scripts/map.gd" id="1_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbgi4"]
 [ext_resource type="TileSet" uid="uid://cagocvkkqqagt" path="res://assets/map_tile_set.tres" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dxnip5pqv7sbd" path="res://prefabs/map_player.tscn" id="3_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://ykygs6k7nn0d" path="res://prefabs/flag_spot.tscn" id="4_jyhfs"]
 [ext_resource type="Shader" uid="uid://dxh1swvrcq2cy" path="res://assets/shaders/water.gdshader" id="4_tefeu"]
 [ext_resource type="FontFile" uid="uid://dfy61dmp7xhiv" path="res://assets/fonts/pixy/PIXY.otf" id="5_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://df8624371rjvp" path="res://prefabs/target_spot.tscn" id="5_og1vs"]
@@ -21,8 +20,12 @@
 [ext_resource type="PackedScene" uid="uid://cixefxdjb4bah" path="res://prefabs/house_green.tscn" id="14_y6deb"]
 [ext_resource type="PackedScene" uid="uid://dsngldseafhts" path="res://prefabs/house_blue.tscn" id="15_og1vs"]
 [ext_resource type="Theme" uid="uid://ckhnb04es20vb" path="res://assets/game_theme.tres" id="20_4b7dj"]
+[ext_resource type="Script" uid="uid://1h4e4u5r216m" path="res://scripts/quest/quest_runner.gd" id="20_y2ir2"]
 [ext_resource type="PackedScene" uid="uid://br63gulbpuafg" path="res://prefabs/managers/game_manager.tscn" id="20_yc10j"]
+[ext_resource type="Resource" uid="uid://dog4n3tirmxnu" path="res://quests/intro_quest.tres" id="21_5u2yt"]
 [ext_resource type="PackedScene" uid="uid://cokowou4qfaag" path="res://prefabs/managers/transition_manager.tscn" id="21_jscy8"]
+[ext_resource type="PackedScene" uid="uid://cdskjubf08vu1" path="res://prefabs/target_quest_spot.tscn" id="21_y2ir2"]
+[ext_resource type="Script" uid="uid://tpetqqwwct8r" path="res://scripts/quest/quest_interact_action.gd" id="22_30iet"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
 shader = ExtResource("4_tefeu")
@@ -42,11 +45,13 @@ bus = &"BGM"
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Map" type="Node2D" parent="World" node_paths=PackedStringArray("_bg_layer", "_invisible_wall_layer", "_quit_button")]
+[node name="Map" type="Node2D" parent="World" node_paths=PackedStringArray("content", "_bg_layer", "_invisible_wall_layer", "_quit_button", "_canvas_layer")]
 script = ExtResource("1_jyhfs")
+content = NodePath("../Content")
 _bg_layer = NodePath("GrassConcreteLayer")
 _invisible_wall_layer = NodePath("InvisibleWallLayer")
 _quit_button = NodePath("../../CanvasLayer/UI/MarginContainer/QuitButton")
+_canvas_layer = NodePath("../../CanvasLayer")
 metadata/_edit_lock_ = true
 
 [node name="GrassConcreteLayer" type="TileMapLayer" parent="World/Map"]
@@ -223,30 +228,6 @@ position = Vector2(168, -72)
 script = ExtResource("9_2cfcp")
 minigame_scene = "test_minigame"
 metadata/_custom_type_script = "uid://e48uj5bkbkht"
-
-[node name="LevelSpot" parent="World/Content" instance=ExtResource("4_jyhfs")]
-position = Vector2(104, -200)
-
-[node name="LevelSpot2" parent="World/Content" instance=ExtResource("4_jyhfs")]
-position = Vector2(104, -72)
-
-[node name="LevelSpot3" parent="World/Content" instance=ExtResource("4_jyhfs")]
-position = Vector2(-408, -8)
-
-[node name="LevelSpot8" parent="World/Content" instance=ExtResource("4_jyhfs")]
-position = Vector2(-280, 120)
-
-[node name="LevelSpot4" parent="World/Content" instance=ExtResource("4_jyhfs")]
-position = Vector2(168, 184)
-
-[node name="LevelSpot5" parent="World/Content" instance=ExtResource("4_jyhfs")]
-position = Vector2(-216, 248)
-
-[node name="LevelSpot6" parent="World/Content" instance=ExtResource("4_jyhfs")]
-position = Vector2(-152, -136)
-
-[node name="LevelSpot7" parent="World/Content" instance=ExtResource("4_jyhfs")]
-position = Vector2(-88, -200)
 
 [node name="MapPlayer" parent="World/Content" groups=["map_player"] instance=ExtResource("3_jyhfs")]
 position = Vector2(-8, 24)
@@ -503,7 +484,122 @@ position = Vector2(40, -24)
 [node name="HouseGreen4" parent="World/Content" instance=ExtResource("14_y6deb")]
 position = Vector2(144, 24)
 
+[node name="Quests" type="Node2D" parent="World"]
+
+[node name="IntroQuestRunner" type="Node2D" parent="World/Quests"]
+script = ExtResource("20_y2ir2")
+quest = ExtResource("21_5u2yt")
+metadata/_custom_type_script = "uid://1h4e4u5r216m"
+
+[node name="StartDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner"]
+position = Vector2(8, 24)
+script = ExtResource("22_30iet")
+mode = 2
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="QuestInteractable" parent="World/Quests/IntroQuestRunner/StartDialogue" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/StartDialogue/QuestInteractable"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("7_vxglm")
+metadata/_custom_type_script = "uid://khek842hayn8"
+metadata/_edit_lock_ = true
+
+[node name="GotoPoint1" type="Node2D" parent="World/Quests/IntroQuestRunner"]
+position = Vector2(232, -8)
+script = ExtResource("22_30iet")
+mode = 2
+prereq_actions = Array[String](["StartDialogue"])
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="QuestInteractable" parent="World/Quests/IntroQuestRunner/GotoPoint1" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint1/QuestInteractable"]
+position = Vector2(-136, 56)
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("7_vxglm")
+metadata/_custom_type_script = "uid://khek842hayn8"
+metadata/_edit_lock_ = true
+
+[node name="QuestInteractable2" parent="World/Quests/IntroQuestRunner/GotoPoint1" instance=ExtResource("21_y2ir2")]
+position = Vector2(32, 0)
+is_oneshot = true
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint1/QuestInteractable2"]
+position = Vector2(-136, 56)
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("7_vxglm")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="GotoPoint2" type="Node2D" parent="World/Quests/IntroQuestRunner"]
+position = Vector2(-152, 120)
+script = ExtResource("22_30iet")
+mode = 1
+prereq_actions = Array[String](["StartDialogue"])
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="GotoPoint2" parent="World/Quests/IntroQuestRunner/GotoPoint2" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint2/GotoPoint2"]
+position = Vector2(-136, 56)
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("7_vxglm")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="GotoPoint3" parent="World/Quests/IntroQuestRunner/GotoPoint2" instance=ExtResource("21_y2ir2")]
+position = Vector2(32, 0)
+is_oneshot = true
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint2/GotoPoint3"]
+position = Vector2(-136, 56)
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("7_vxglm")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="GotoPoint3" type="Node2D" parent="World/Quests/IntroQuestRunner"]
+position = Vector2(-88, 184)
+script = ExtResource("22_30iet")
+mode = 2
+prereq_actions = Array[String](["GotoPoint2", "GotoPoint1"])
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="GotoPoint2" parent="World/Quests/IntroQuestRunner/GotoPoint3" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint3/GotoPoint2"]
+position = Vector2(-136, 56)
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("7_vxglm")
+metadata/_custom_type_script = "uid://khek842hayn8"
+metadata/_edit_lock_ = true
+
+[node name="GotoPoint4" type="Node2D" parent="World/Quests/IntroQuestRunner"]
+position = Vector2(168, 120)
+script = ExtResource("22_30iet")
+mode = 2
+prereq_actions = Array[String](["GotoPoint1:1", "GotoPoint3"])
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="GotoPoint2" parent="World/Quests/IntroQuestRunner/GotoPoint4" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/GotoPoint4/GotoPoint2"]
+position = Vector2(-136, 56)
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("7_vxglm")
+metadata/_custom_type_script = "uid://khek842hayn8"
+metadata/_edit_lock_ = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -513,6 +609,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("20_4b7dj")
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
 layout_mode = 1
@@ -522,11 +619,13 @@ theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
+metadata/_edit_lock_ = true
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/UI/MarginContainer"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Quit"
+metadata/_edit_lock_ = true
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("_transition_manager") instance=ExtResource("20_yc10j")]
 _transition_manager = NodePath("../TransitionManager")

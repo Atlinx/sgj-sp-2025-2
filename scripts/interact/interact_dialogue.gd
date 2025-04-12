@@ -6,5 +6,5 @@ extends Interact
 
 
 func _on_interact():
-	# Load default style
+	Dialogic.timeline_ended.connect(interactable.finish_interact, CONNECT_ONE_SHOT)
 	Dialogic.start_timeline(timeline)

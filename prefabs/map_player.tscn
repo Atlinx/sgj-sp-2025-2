@@ -222,7 +222,8 @@ delay_range = Vector2(0, 0.05)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
 shape = SubResource("CircleShape2D_g5e50")
+debug_color = Color(0, 0.595, 0.7, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sb3sa")
-debug_color = Color(0.7, 0.415625, 0, 0.42)
+debug_color = Color(0.7, 0.42, 0, 0)

@@ -70,6 +70,9 @@ func _physics_process(delta: float) -> void:
 		for area in _interact_area.get_overlapping_areas():
 			if area.get_parent() is Interactable:
 				var interactable = area.get_parent() as Interactable
+				if not interactable.is_visible_in_tree():
+					# Interactable must also be visible
+					continue
 				interactable.interact()
 				_interact_sfx.play_random()
 				break
