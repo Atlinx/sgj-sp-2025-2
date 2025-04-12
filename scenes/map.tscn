@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://gd7xxdx4861t"]
+[gd_scene load_steps=31 format=4 uid="uid://gd7xxdx4861t"]
 
 [ext_resource type="Script" uid="uid://cntgecfdu4f5g" path="res://scripts/map.gd" id="1_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbgi4"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://tpetqqwwct8r" path="res://scripts/quest/quest_interact_action.gd" id="22_30iet"]
 [ext_resource type="Resource" uid="uid://tiiv8eyynjr2" path="res://quests/test_quest_2.tres" id="24_4o3w1"]
 [ext_resource type="PackedScene" uid="uid://dntuhqcyq6qj6" path="res://prefabs/managers/quests_manager.tscn" id="25_mkblt"]
+[ext_resource type="Script" uid="uid://dkh83b184ko0h" path="res://scripts/interact_ui.gd" id="26_6ek7f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
 shader = ExtResource("4_tefeu")
@@ -745,6 +746,23 @@ custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Quit"
 metadata/_edit_lock_ = true
+
+[node name="InteractLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = 60.0
+offset_right = 115.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_4b7dj")
+text = "Press E to interact"
+horizontal_alignment = 1
+script = ExtResource("26_6ek7f")
 
 [node name="QuestsManager" parent="." instance=ExtResource("25_mkblt")]
 

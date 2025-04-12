@@ -42,6 +42,26 @@ func _ready() -> void:
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
 	GameManager.global.on_save_state.connect(_on_save_state)
 	GameManager.global.on_load_state.connect(_on_load_state)
+	
+	_interact_area.area_entered.connect(_area_updated.unbind(1))
+	_interact_area.area_exited.connect(_area_updated.unbind(1))
+
+
+func get_interactables() -> Array[Interactable]:
+	var interactables: Array[Interactable] = []
+	for area in _interact_area.get_overlapping_areas():
+		if area.get_parent() is Interactable and area.is_visible_in_tree():
+			interactables.append(area.get_parent() as Interactable)
+	return interactables
+
+
+func _area_updated():
+	var interactables = get_interactables()
+	if interactables.size() > 0:
+		var interactable = interactables[0]
+		InteractUI.global.set_interact(interactable.interact_phrase)
+	else:
+		InteractUI.global.hide_interact()
 
 
 func _on_save_state():
@@ -67,15 +87,13 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if Input.is_action_just_released("p1_interact"):
-		for area in _interact_area.get_overlapping_areas():
-			if area.get_parent() is Interactable:
-				var interactable = area.get_parent() as Interactable
-				if not interactable.is_visible_in_tree():
-					# Interactable must also be visible
-					continue
-				interactable.interact()
-				_interact_sfx.play_random()
-				break
+		for interactable in get_interactables():
+			if not interactable.is_visible_in_tree():
+				# Interactable must also be visible
+				continue
+			interactable.interact()
+			_interact_sfx.play_random()
+			break
 	var input_dir = Vector2.ZERO
 	for input in INPUT_DIRS:
 		if Input.is_action_pressed(input):
