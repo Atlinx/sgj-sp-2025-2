@@ -28,6 +28,8 @@ func _ready() -> void:
 	reparent.call_deferred(get_tree().root)
 	TransitionManager.global.on_transition_out.connect(on_save_state.emit)
 	TransitionManager.global.on_transition_in.connect(on_load_state.emit)
+	TransitionManager.global.on_transition_out.connect(on_save_state.emit)
+	TransitionManager.global.on_transition_in.connect(on_load_state.emit)
 	# Load default style
 	Dialogic.Styles.load_style()
 	Dialogic.Styles.get_layout_node().visible = false
@@ -38,6 +40,7 @@ func _ready() -> void:
 
 func reset():
 	map_player_tilepos = Vector2i(0, -1)
+	QuestManager.global.reset()
 	QuestManager.global.reset()
 
 
