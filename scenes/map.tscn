@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://gd7xxdx4861t"]
+[gd_scene load_steps=30 format=4 uid="uid://gd7xxdx4861t"]
 
 [ext_resource type="Script" uid="uid://cntgecfdu4f5g" path="res://scripts/map.gd" id="1_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbgi4"]
@@ -26,8 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cokowou4qfaag" path="res://prefabs/managers/transition_manager.tscn" id="21_jscy8"]
 [ext_resource type="PackedScene" uid="uid://cdskjubf08vu1" path="res://prefabs/target_quest_spot.tscn" id="21_y2ir2"]
 [ext_resource type="Script" uid="uid://tpetqqwwct8r" path="res://scripts/quest/quest_interact_action.gd" id="22_30iet"]
-[ext_resource type="Resource" uid="uid://bewgr57lj1b5g" path="res://quests/picking_up_litter.tres" id="24_4o3w1"]
-[ext_resource type="Resource" uid="uid://dtscre108ivgp" path="res://story/timelines/test2.dtl" id="25_6ek7f"]
+[ext_resource type="Resource" uid="uid://tiiv8eyynjr2" path="res://quests/test_quest_2.tres" id="24_4o3w1"]
 [ext_resource type="PackedScene" uid="uid://dntuhqcyq6qj6" path="res://prefabs/managers/quests_manager.tscn" id="25_mkblt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
@@ -206,9 +205,6 @@ theme_override_constants/paragraph_spacing = -1
 theme_override_fonts/font = ExtResource("5_2f3dj")
 theme_override_font_sizes/font_size = 11
 text = "downtown lane"
-
-[node name="Office" parent="World/Map" instance=ExtResource("9_gqmmt")]
-position = Vector2(-56, -88)
 
 [node name="Content" type="Node2D" parent="World"]
 y_sort_enabled = true
@@ -493,7 +489,6 @@ position = Vector2(144, 24)
 [node name="Quests" type="Node2D" parent="World"]
 
 [node name="IntroQuestRunner" type="Node2D" parent="World/Quests"]
-visible = false
 script = ExtResource("20_y2ir2")
 quest = ExtResource("21_5u2yt")
 metadata/_custom_type_script = "uid://1h4e4u5r216m"
@@ -502,6 +497,7 @@ metadata/_custom_type_script = "uid://1h4e4u5r216m"
 position = Vector2(8, 24)
 script = ExtResource("22_30iet")
 mode = 2
+description = "Start dialogue desc"
 choice_actions = Array[String](["GotoPoint1", "GotoPoint2"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
@@ -519,6 +515,7 @@ metadata/_edit_lock_ = true
 position = Vector2(232, -8)
 script = ExtResource("22_30iet")
 mode = 2
+description = "Goto point desc"
 prereq_actions = Array[String](["StartDialogue"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
@@ -547,6 +544,7 @@ metadata/_custom_type_script = "uid://khek842hayn8"
 position = Vector2(-152, 120)
 script = ExtResource("22_30iet")
 mode = 1
+description = "Goto point 2 desc"
 prereq_actions = Array[String](["StartDialogue"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
@@ -574,6 +572,7 @@ metadata/_custom_type_script = "uid://khek842hayn8"
 position = Vector2(-88, 184)
 script = ExtResource("22_30iet")
 mode = 2
+description = "goto point 3 desc"
 prereq_actions = Array[String](["GotoPoint2"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
@@ -592,6 +591,8 @@ metadata/_edit_lock_ = true
 position = Vector2(168, 144)
 script = ExtResource("22_30iet")
 mode = 2
+description = "Goto point 4 desc"
+is_terminal = true
 prereq_actions = Array[String](["GotoPoint1:1", "GotoPoint3"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
@@ -606,84 +607,128 @@ timeline = ExtResource("7_vxglm")
 metadata/_custom_type_script = "uid://khek842hayn8"
 metadata/_edit_lock_ = true
 
-[node name="PickingUpLitterRunner" type="Node2D" parent="World/Quests"]
+[node name="TestQuest2Runner" type="Node2D" parent="World/Quests"]
+position = Vector2(24, 168)
 script = ExtResource("20_y2ir2")
 quest = ExtResource("24_4o3w1")
 metadata/_custom_type_script = "uid://1h4e4u5r216m"
 
-[node name="Action1" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
-position = Vector2(-80, 32)
+[node name="StartDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner"]
+position = Vector2(8, 24)
 script = ExtResource("22_30iet")
-mode = 1
+mode = 2
+description = "Start dialogue desc"
+choice_actions = Array[String](["GotoPoint1", "GotoPoint2"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
-[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action1" instance=ExtResource("21_y2ir2")]
+[node name="QuestInteractable" parent="World/Quests/TestQuest2Runner/StartDialogue" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
 
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action1/TargetQuestSpot"]
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/StartDialogue/QuestInteractable"]
 script = ExtResource("6_2wyq8")
-timeline = ExtResource("25_6ek7f")
+timeline = ExtResource("7_vxglm")
 metadata/_custom_type_script = "uid://khek842hayn8"
+metadata/_edit_lock_ = true
 
-[node name="Action2" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
-position = Vector2(-64, 88)
+[node name="GotoPoint1" type="Node2D" parent="World/Quests/TestQuest2Runner"]
+position = Vector2(232, -8)
 script = ExtResource("22_30iet")
-mode = 1
-prereq_actions = Array[String](["Action1"])
-choice_actions = Array[String](["Action3", "Action4"])
+mode = 2
+description = "Goto point desc"
+prereq_actions = Array[String](["StartDialogue"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
-[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action2" instance=ExtResource("21_y2ir2")]
+[node name="QuestInteractable" parent="World/Quests/TestQuest2Runner/GotoPoint1" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
 
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action2/TargetQuestSpot"]
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint1/QuestInteractable"]
+position = Vector2(-136, 56)
 script = ExtResource("6_2wyq8")
-timeline = ExtResource("25_6ek7f")
+timeline = ExtResource("7_vxglm")
+metadata/_custom_type_script = "uid://khek842hayn8"
+metadata/_edit_lock_ = true
+
+[node name="QuestInteractable2" parent="World/Quests/TestQuest2Runner/GotoPoint1" instance=ExtResource("21_y2ir2")]
+position = Vector2(32, 0)
+is_oneshot = true
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint1/QuestInteractable2"]
+position = Vector2(-136, 56)
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("7_vxglm")
 metadata/_custom_type_script = "uid://khek842hayn8"
 
-[node name="Action3" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
-position = Vector2(-8, 56)
+[node name="GotoPoint2" type="Node2D" parent="World/Quests/TestQuest2Runner"]
+position = Vector2(-152, 120)
 script = ExtResource("22_30iet")
 mode = 1
-prereq_actions = Array[String](["Action2"])
+description = "Goto point 2 desc"
+prereq_actions = Array[String](["StartDialogue"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
-[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action3" instance=ExtResource("21_y2ir2")]
+[node name="GotoPoint2" parent="World/Quests/TestQuest2Runner/GotoPoint2" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
 
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action3/TargetQuestSpot"]
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint2/GotoPoint2"]
+position = Vector2(-136, 56)
 script = ExtResource("6_2wyq8")
-timeline = ExtResource("25_6ek7f")
+timeline = ExtResource("7_vxglm")
 metadata/_custom_type_script = "uid://khek842hayn8"
 
-[node name="Action4" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
-position = Vector2(40, 120)
+[node name="GotoPoint3" parent="World/Quests/TestQuest2Runner/GotoPoint2" instance=ExtResource("21_y2ir2")]
+position = Vector2(32, 0)
+is_oneshot = true
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint2/GotoPoint3"]
+position = Vector2(-136, 56)
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("7_vxglm")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="GotoPoint3" type="Node2D" parent="World/Quests/TestQuest2Runner"]
+position = Vector2(-88, 184)
 script = ExtResource("22_30iet")
-mode = 1
-prereq_actions = Array[String](["Action2"])
+mode = 2
+description = "goto point 3 desc"
+prereq_actions = Array[String](["GotoPoint2"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
-[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action4" instance=ExtResource("21_y2ir2")]
+[node name="GotoPoint2" parent="World/Quests/TestQuest2Runner/GotoPoint3" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
 
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action4/TargetQuestSpot"]
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint3/GotoPoint2"]
+position = Vector2(-136, 56)
 script = ExtResource("6_2wyq8")
-timeline = ExtResource("25_6ek7f")
+timeline = ExtResource("7_vxglm")
 metadata/_custom_type_script = "uid://khek842hayn8"
+metadata/_edit_lock_ = true
 
-[node name="Action5" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
-position = Vector2(72, 56)
+[node name="GotoPoint4" type="Node2D" parent="World/Quests/TestQuest2Runner"]
+position = Vector2(168, 144)
 script = ExtResource("22_30iet")
-mode = 1
-prereq_actions = Array[String](["Action3:g1", "Action4:g2"])
+mode = 2
+description = "Goto point 4 desc"
+is_terminal = true
+prereq_actions = Array[String](["GotoPoint1:1", "GotoPoint3"])
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
-[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action5" instance=ExtResource("21_y2ir2")]
+[node name="GotoPoint2" parent="World/Quests/TestQuest2Runner/GotoPoint4" instance=ExtResource("21_y2ir2")]
+is_oneshot = true
+metadata/_edit_lock_ = true
 
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action5/TargetQuestSpot"]
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/TestQuest2Runner/GotoPoint4/GotoPoint2"]
+position = Vector2(-136, 56)
 script = ExtResource("6_2wyq8")
-timeline = ExtResource("25_6ek7f")
+timeline = ExtResource("7_vxglm")
 metadata/_custom_type_script = "uid://khek842hayn8"
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50
-visible = false
 
 [node name="QuitPanel" type="MarginContainer" parent="CanvasLayer"]
 offset_right = 192.0

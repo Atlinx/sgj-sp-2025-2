@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://llamuryyajce"]
+
+[ext_resource type="Texture2D" uid="uid://b0xtp2y0mle5s" path="res://assets/sprites/shadow_flat.png" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://dgjuxnxyskm31" path="res://scripts/bullet.gd" id="1_y25gk"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_mkf8s"]
+
+[node name="Bullet" type="CharacterBody2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_y25gk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4.61564, -0.706541)
+texture = ExtResource("1_mkf8s")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2, -2)
+scale = Vector2(1.03055, 0.460462)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(28.64, 1)
+shape = SubResource("SegmentShape2D_mkf8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -2)
+scale = Vector2(29.515, 0.460462)
+shape = SubResource("SegmentShape2D_mkf8s")
+
+[node name="DeadTime" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="DeadTime" to="." method="_on_dead_time_timeout"]

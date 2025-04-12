@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvqb30febwfxj"]
+
+[ext_resource type="Script" uid="uid://c78y3fn8ib7ts" path="res://scripts/litter.gd" id="1_dqed2"]
+[ext_resource type="Texture2D" uid="uid://cnqfpftgraqic" path="res://assets/sprites/litterLarge_PlasticBottle.png" id="2_pb2u2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i8hxa"]
+radius = 49.3441
+height = 300.0
+
+[node name="Plastic" type="Node2D"]
+scale = Vector2(0.02, 0.02)
+script = ExtResource("1_dqed2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("2_pb2u2")
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = -0.781074
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_i8hxa")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

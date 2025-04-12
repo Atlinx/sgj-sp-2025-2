@@ -5,15 +5,16 @@
 [ext_resource type="Script" uid="uid://d2awsnmjpmio2" path="res://scripts/random_audio_stream_player.gd" id="3_ypk86"]
 [ext_resource type="AudioStream" uid="uid://ceavi1j4ogil0" path="res://assets/sfx/select.wav" id="4_0hlsr"]
 
-[node name="QuestListItem" type="VBoxContainer" node_paths=PackedStringArray("_title_label", "_description_label", "_checkbox", "_complete_sfx")]
-custom_minimum_size = Vector2(200, 0)
+[node name="QuestListItem" type="VBoxContainer" node_paths=PackedStringArray("_title_label", "_description_label", "_action_description_label", "_checkbox", "_complete_sfx")]
+custom_minimum_size = Vector2(300, 0)
 offset_right = 143.0
 offset_bottom = 24.0
 theme = ExtResource("1_ddb0g")
 theme_override_constants/separation = 0
 script = ExtResource("1_08f12")
 _title_label = NodePath("HSplitContainer/TitleLabel")
-_description_label = NodePath("MarginContainer/DescriptionLabel")
+_description_label = NodePath("MarginContainer/VBoxContainer/DescriptionLabel")
+_action_description_label = NodePath("MarginContainer/VBoxContainer/ActionDescriptionLabel")
 _checkbox = NodePath("HSplitContainer/CheckBox")
 _complete_sfx = NodePath("CompleteSfx")
 
@@ -39,11 +40,22 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="DescriptionLabel" type="Label" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 theme_type_variation = &"SmallLabel"
 text = "Visit grandma at her house down town near the bakery"
+autowrap_mode = 3
+
+[node name="ActionDescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_type_variation = &"SmallLabel"
+text = "+ Check out
++ "
 autowrap_mode = 3
 
 [node name="CompleteSfx" type="AudioStreamPlayer" parent="."]

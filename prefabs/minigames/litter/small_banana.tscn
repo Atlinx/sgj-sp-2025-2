@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhlji23guit8c"]
+
+[ext_resource type="Script" uid="uid://c78y3fn8ib7ts" path="res://scripts/litter.gd" id="1_aeafm"]
+[ext_resource type="Texture2D" uid="uid://ewwo713ir261" path="res://assets/sprites/litterSmall_BananaPeel.png" id="2_aeafm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i8hxa"]
+radius = 70.0
+height = 148.0
+
+[node name="Banana" type="Node2D"]
+scale = Vector2(0.05, 0.05)
+script = ExtResource("1_aeafm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(10, 10)
+texture = ExtResource("2_aeafm")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_i8hxa")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

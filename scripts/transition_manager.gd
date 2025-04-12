@@ -10,6 +10,9 @@ signal on_transition_end()
 
 static var global: TransitionManager
 
+var current_scene: String:
+	get:
+		return get_tree().current_scene.scene_file_path.get_file().get_basename()
 
 @export var _overlay_texture: OverlayTexture
 @export var _transition_in_sfx: RandomAudioStreamPlayer
