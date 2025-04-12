@@ -112,4 +112,4 @@ func _spawn_tentacle():
 	add_child(tentacle)
 	
 	# 初始化触手
-	tentacle.init_tentacle(global_position,target_position,tentacle_speed)
+	tentacle.init_tentacle(global_position,target_position)

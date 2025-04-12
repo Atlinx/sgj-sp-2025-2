@@ -187,7 +187,7 @@ tile_map_data = PackedByteArray("AAAIAP7/AQADAAIAAAAGAP7/AQACAAMAAAAHAP7/AQACAAM
 tile_set = ExtResource("2_aefbl")
 
 [node name="LitterPlayer" type="Node2D" parent="World" node_paths=PackedStringArray("_flip_sprite", "_anim_player")]
-position = Vector2(0, -24)
+position = Vector2(1, -24)
 script = ExtResource("3_aefbl")
 _flip_sprite = NodePath("FlipSprite")
 _anim_player = NodePath("AnimationPlayer")
