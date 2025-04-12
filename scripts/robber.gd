@@ -34,8 +34,8 @@ var facing_right: bool = true
 @export var rotation_speed_range: Vector2 = Vector2(2.0, 5.0) # 旋转速度范围（弧度/秒）
 
 func _ready() -> void:
-	tile_position = Map.global.local_to_map(position)
-	position = Map.global.map_to_local_center(tile_position)
+	#tile_position = Map.global.local_to_map(position)
+	#position = Map.global.map_to_local_center(tile_position)
 	_flip_sprite.scale.x = 1  
 	randomize()
 	_setup_timer()
@@ -48,7 +48,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# 只处理水平移动
 	position += Vector2.RIGHT * horizontal_speed * delta
-	tile_position = Map.global.local_to_map(position)
+	#tile_position = Map.global.local_to_map(position)
 
 
 
