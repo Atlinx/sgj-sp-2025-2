@@ -68,8 +68,8 @@ func _shoot():
 	if !_player or !bullet:
 		return
 	var distance = _player.global_position - global_position
-	print(distance.x ** 2 + distance.y**2)
-	if distance.x ** 2 + distance.y**2 < 2000:
+	
+	if distance.length_squared() < 2000:
 		return
 	# 创建子弹实例
 	var bullet_instance = bullet.instantiate()
