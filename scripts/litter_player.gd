@@ -32,8 +32,8 @@ const INPUT_DIRS = {
 const DEAD_ZONE = 0.01
 
 func _ready() -> void:
-	tile_position = Map.global.local_to_map(position)
-	position = Map.global.map_to_local(tile_position)
+	#tile_position = Map.global.local_to_map(position)
+	#position = Map.global.map_to_local(tile_position)
 	_anim_player.play("idle")
 	_prev_position = position
 
@@ -69,8 +69,8 @@ func _process(delta: float) -> void:
 			if move_tween:
 				move_tween.kill()
 			move_tween = create_tween()
-			move_tween.tween_property(self, "position", Map.global.map_to_local_center(tile_position), 0.2) \
-				.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			#move_tween.tween_property(self, "position", Map.global.map_to_local_center(tile_position), 0.2) \
+				#.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	else:
 		if not is_moving:
 			_anim_player.play("move")
@@ -89,11 +89,11 @@ func _process(delta: float) -> void:
 			flip_tween = create_tween()
 			flip_tween.tween_property(_flip_sprite, "scale", Vector2(1, 1) if input_dir.x >= 0 else Vector2(-1, 1), 0.2) \
 				.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BOUNCE)
-		tile_position = Map.global.local_to_map(position)
+		#tile_position = Map.global.local_to_map(position)
 	prev_input_dir = input_dir
 	
 	# 鼠标输入检测
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("p1_interact"):
 		_spawn_tentacle()
 
 	move_and_slide()
