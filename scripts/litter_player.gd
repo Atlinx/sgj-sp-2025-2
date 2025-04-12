@@ -40,7 +40,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$"../../CanvasLayer/Label".text = "score: "+str(score)
 
-	print(extending_tenta)
 	# 计算当前速度
 	velocity = (position - _prev_position) 
 	_prev_position = position
