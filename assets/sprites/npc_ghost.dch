@@ -1,0 +1,40 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(1, 1, 1, 1),
+&"custom_info": {
+"sound_mood_default": "normal",
+"sound_moods": {
+"normal": {
+"mode": 1,
+"name": "normal",
+"pitch_base": 2.2,
+"pitch_variance": 0.0,
+"skip_characters": 0.0,
+"sound_path": "res://assets/sfx/voices/voice_3.wav",
+"volume_base": -10.0,
+"volume_variance": 0.0
+}
+},
+"style": ""
+},
+&"default_portrait": "New portrait",
+&"description": "",
+&"display_name": "Ghost",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"New portrait": {
+"export_overrides": {
+"image": "\"res://assets/sprites/ghost_normal.png\""
+},
+"mirror": false,
+"offset": Vector2(-90, -50),
+"scale": 5.0,
+"scene": ""
+}
+},
+&"scale": 1.0
+}

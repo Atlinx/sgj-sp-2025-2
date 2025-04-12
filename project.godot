@@ -26,14 +26,19 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
+"ghost": "res://assets/sprites/ghost.dch",
 "mc_van": "res://story/characters/mc_van.dch",
-"npc_client": "res://npc_client.dch"
+"npc_client": "res://npc_client.dch",
+"npc_ghost": "res://assets/sprites/npc_ghost.dch"
 }
 directories/dtl_directory={
+"conclusion": "res://assets/sfx/voices/conclusion.dtl",
+"ghost_therapy": "res://story/timelines/ghost_therapy.dtl",
 "mainjob_1": "res://story/timelines/mainjob_1.dtl",
 "mainjob_2": "res://story/timelines/mainjob_2.dtl",
 "mainjob_3": "res://story/timelines/mainjob_3.dtl",
 "mainjob_4": "res://story/timelines/mainjob_4.dtl",
+"mainjob_4_epilogue": "res://assets/sprites/mainjob_4_epilogue.dtl",
 "test": "res://story/timelines/test.dtl",
 "test2": "res://story/timelines/test2.dtl"
 }

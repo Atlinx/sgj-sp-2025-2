@@ -1,0 +1,117 @@
+join mc_van leftmost [animation="Slide In Left" wait="true"]
+join npc_ghost rightmost [animation="Slide In Up" wait="true"]
+update npc_ghost [animation="Heartbeat"]
+npc_ghost: The party... it’s not time yet...
+update npc_ghost [animation="Heartbeat"]
+npc_ghost: There’s still time...
+- Try to get her attention
+	update mc_van [animation="Bounce"]
+	mc_van: Ma’am, I’m sorry to bother you, but-
+update npc_ghost [animation="Shake X"]
+npc_ghost: I’m busy, can’t you see??
+update npc_ghost [animation="Heartbeat"]
+npc_ghost: The forks still need to be taken out, and the couch needs to be moved, and the pinata needs to be put up, and so much more...
+update npc_ghost [animation="Shake X"]
+npc_ghost: Why is there still no progress?
+update npc_ghost [animation="Heartbeat"]
+npc_ghost: I have been working for so, so long already...
+- Offer her your services
+	update mc_van [animation="Bounce"]
+	mc_van: If you’d like, I can help. When does it start?
+	update npc_ghost [animation="Heartbeat"]
+	npc_ghost: Tomorrow.\
+Tomorrow, but...
+	update npc_ghost [animation="Heartbeat"]
+	npc_ghost: Tomorrow...\
+Tomorrow?
+	update npc_ghost [animation="Heartbeat"]
+	npc_ghost: Tomorrow... won’t come for me, will it?
+	- Tell the truth
+		update mc_van [animation="Bounce"]
+		mc_van: ... it won't.
+		update npc_ghost [animation="Heartbeat"]
+		npc_ghost: I see... \
+That accident...
+		update npc_ghost [animation="Heartbeat"]
+		npc_ghost: But... I can still help them...\
+I can still set up the put out the forks and hang up the pinata!
+		- Someone else lives here now.
+			update mc_van [animation="Bounce"]
+			mc_van: This is no longer their home.
+			update npc_ghost [animation="Shake X"]
+			npc_ghost: They moved?\
+I'm sorry. I'm sorry.
+			update npc_ghost [animation="Shake X"]
+			npc_ghost: Mom should have driven better, and slept earlier.\
+Mom shouldn't have done so many night shifts, and left you alone.
+			- Offer to help again
+				update mc_van [animation="Bounce"]
+				mc_van: Would you like to tell me about it? Perhaps talking through it will put your mind at ease.
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: Sure, yes... That is a good idea.
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: I lived here with my husband and daughter.
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: We were paycheck-to-paycheck, so we couldn’t spend much time with each other.
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: To make things worse, year after year neither me nor my husband could celebrate her birthday, due to something or another cropping up lsat minute.
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: We wanted to make things up to her.
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: Last year, she had us promise her that we would spend her next birthday together. 
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: But... it was a promise that I couldn’t keep, as you can see. 
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: They... my husband and my daughter... they were my greatest treasures. The greatest gifts the world gave to me.
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: I wanted to be the best I could be for them.
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: But alas...
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: I was unable to bring them comfort while I was alive.
+				update npc_ghost [animation="Heartbeat"]
+				npc_ghost: And I even ended up burdening them with my death.
+				- Comfort her
+					update mc_van [animation="Bounce"]
+					mc_van: I understand your sentiment.
+					update mc_van [animation="Bounce"]
+					mc_van: But I think you don't need to worry so much.
+					update mc_van [animation="Bounce"]
+					mc_van: People are resilient creatures.
+					update mc_van [animation="Bounce"]
+					mc_van: When they encounter grief and sadness, they are able to come out on top and live stronger than before.
+					update npc_ghost [animation="Heartbeat"]
+					npc_ghost: But... moving out of our home... 
+					update npc_ghost [animation="Heartbeat"]
+					npc_ghost: I know this house would not sell for much. 
+					update npc_ghost [animation="Heartbeat"]
+					npc_ghost: It's because they were mourning my passing that they would have to go through the trouble.
+					- Reassure her
+						update mc_van [animation="Bounce"]
+						mc_van: I believe your husband is an honest man, he worked alongside you to support your family.
+						update mc_van [animation="Bounce"]
+						mc_van: To me it sounds like he would not irresponsible with these big decisions. What do you think?
+						update npc_ghost [animation="Heartbeat"]
+						npc_ghost: You're right. He wouldn't do something like that. 
+						- Reason with her
+							update mc_van [animation="Bounce"]
+							mc_van: Then, given that he did move, doesn't it indicate that things have gotten better?
+							update npc_ghost [animation="Heartbeat"]
+							npc_ghost: It does...
+							update npc_ghost [animation="Heartbeat"]
+							npc_ghost: Then, do you think he will keep her promise?
+							- Yes
+								update mc_van [animation="Bounce"]
+								mc_van: Yes. I firmly believe so.
+								update mc_van [animation="Bounce"]
+								mc_van: While your passing surely was mourned, I am sure they have grown closer.
+								update mc_van [animation="Bounce"]
+								mc_van: While they were the greatest gifts to you, 
+								update npc_ghost [animation="Heartbeat"]
+								npc_ghost: I want to believe that too.
+								update npc_ghost [animation="Heartbeat"]
+								npc_ghost: I think... I can rest easy now.
+								- Send her off
+									update mc_van [animation="Bounce"]
+									mc_van: Have a peaceful rest. 
+									leave npc_ghost [animation="Fade Out"]
