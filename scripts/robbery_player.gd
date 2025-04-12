@@ -1,4 +1,4 @@
-class_name MapPlayer
+class_name RobberyPlayer
 extends Node2D
 
 

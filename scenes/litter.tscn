@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvqb30febwfxj"]
+
+[ext_resource type="Script" uid="uid://c78y3fn8ib7ts" path="res://scripts/litter.gd" id="1_dqed2"]
+[ext_resource type="Texture2D" uid="uid://sufobrrntvnb" path="res://icon.svg" id="1_i8hxa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i8hxa"]
+radius = 70.0
+height = 148.0
+
+[node name="Litter" type="Node2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_dqed2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i8hxa")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_i8hxa")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cntgecfdu4f5g" path="res://scripts/map.gd" id="1_riciq"]
 [ext_resource type="TileSet" uid="uid://cagocvkkqqagt" path="res://assets/map_tile_set.tres" id="2_40tx3"]
-[ext_resource type="Script" uid="uid://dnbml0broy75h" path="res://scripts/map_player.gd" id="3_fqnfq"]
+[ext_resource type="Script" uid="uid://dnbml0broy75h" path="res://scripts/robbery_player.gd" id="3_fqnfq"]
 [ext_resource type="Texture2D" uid="uid://jxiv80bn0aai" path="res://assets/sprites/shadow_flat_small.png" id="4_ca4rs"]
 [ext_resource type="Texture2D" uid="uid://chryfj4cn7yl" path="res://assets/sprites/car.png" id="5_h4ajs"]
 [ext_resource type="Script" uid="uid://bmbp3wpgd5kaj" path="res://scripts/map_robber.gd" id="6_abehs"]
