@@ -37,6 +37,10 @@ func _ready() -> void:
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
 
 
+func reset():
+	map_player_tilepos = Vector2i(0, -1)
+
+
 func _on_timeline_started():
 	Dialogic.Styles.get_layout_node().visible = true
 

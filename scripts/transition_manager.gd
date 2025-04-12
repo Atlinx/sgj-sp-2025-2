@@ -60,8 +60,8 @@ func transition_to(scene):
 	await _trans_tween.finished
 	on_transition_out.emit()
 	get_tree().change_scene_to_packed(scene)
-	on_transition_in.emit()
 	await get_tree().create_timer(0.25).timeout
+	on_transition_in.emit()
 	_trans_tween = create_tween()
 	_trans_tween.tween_property(_loading_label, "modulate", Color(Color.WHITE, 0.0), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	_trans_tween.tween_interval(0.2)

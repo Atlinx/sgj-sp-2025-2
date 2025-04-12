@@ -50,7 +50,7 @@ func _on_save_state():
 
 func _on_load_state():
 	tile_position = GameManager.global.map_player_tilepos
-	position = Map.global.local_to_map(tile_position)
+	position = Map.global.map_to_local_center(tile_position)
 
 
 func _on_timeline_started():

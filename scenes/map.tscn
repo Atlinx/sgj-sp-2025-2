@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://gd7xxdx4861t"]
+[gd_scene load_steps=25 format=4 uid="uid://gd7xxdx4861t"]
 
 [ext_resource type="Script" uid="uid://cntgecfdu4f5g" path="res://scripts/map.gd" id="1_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbgi4"]
@@ -8,9 +8,10 @@
 [ext_resource type="Shader" uid="uid://dxh1swvrcq2cy" path="res://assets/shaders/water.gdshader" id="4_tefeu"]
 [ext_resource type="FontFile" uid="uid://dfy61dmp7xhiv" path="res://assets/fonts/pixy/PIXY.otf" id="5_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://df8624371rjvp" path="res://prefabs/target_spot.tscn" id="5_og1vs"]
-[ext_resource type="Script" uid="uid://khek842hayn8" path="res://scripts/interact_dialogue.gd" id="6_2wyq8"]
+[ext_resource type="Script" uid="uid://khek842hayn8" path="res://scripts/interact/interact_dialogue.gd" id="6_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://lnewytxh62kp" path="res://prefabs/orange_hq.tscn" id="7_jscy8"]
 [ext_resource type="Resource" uid="uid://qhd5783kgunj" path="res://story/timelines/test.dtl" id="7_vxglm"]
+[ext_resource type="Script" uid="uid://e48uj5bkbkht" path="res://scripts/interact/interact_minigame.gd" id="9_2cfcp"]
 [ext_resource type="PackedScene" uid="uid://wi8knbnn62ax" path="res://prefabs/office.tscn" id="9_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://blnvfttgqv4hm" path="res://prefabs/house_red.tscn" id="10_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://c3mgl2e1vcl8f" path="res://prefabs/heart_hq.tscn" id="11_pm3ni"]
@@ -218,6 +219,11 @@ metadata/_custom_type_script = "uid://khek842hayn8"
 [node name="TargetSpot4" parent="World/Content" instance=ExtResource("5_og1vs")]
 position = Vector2(168, -72)
 
+[node name="InteractMinigame" type="Node2D" parent="World/Content/TargetSpot4"]
+script = ExtResource("9_2cfcp")
+minigame_scene = "test_minigame"
+metadata/_custom_type_script = "uid://e48uj5bkbkht"
+
 [node name="LevelSpot" parent="World/Content" instance=ExtResource("4_jyhfs")]
 position = Vector2(104, -200)
 
@@ -243,7 +249,7 @@ position = Vector2(-152, -136)
 position = Vector2(-88, -200)
 
 [node name="MapPlayer" parent="World/Content" groups=["map_player"] instance=ExtResource("3_jyhfs")]
-position = Vector2(8, -8)
+position = Vector2(-8, 24)
 
 [node name="OrangeHQ" parent="World/Content" instance=ExtResource("7_jscy8")]
 position = Vector2(8, -16)
