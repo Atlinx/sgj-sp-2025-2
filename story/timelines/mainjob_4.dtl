@@ -1,0 +1,31 @@
+join mc_van leftmost [animation="Slide In Left" wait="true"]
+join npc_client rightmost [animation="Slide In Up" wait="true"]
+update mc_van [animation="Bounce"]
+mc_van: Orange Odd Jobs, at your service!
+update mc_van [animation="Bounce"]
+mc_van: When you see the orange van rolling down the way, you’ll know your problems will soon fly away!
+update mc_van [animation="Bounce"]
+mc_van: What can we do for you today?
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: Hi, could you do an immediate delivery for me?
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: I ordered a present for my daughter’s birthday party, but just found out I accidentally had it sent to our old address...
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: Right now I’ve got my hands tied with work, so I can’t get it myself... and I saw you guys catch that thief earlier so I think you’re my best bet!
+update mc_van [animation="Bounce"]
+mc_van: Haha, sure thing! Accidents happen all the time, no worries. It’s what odd-jobs groups like us are for!
+update mc_van [animation="Bounce"]
+mc_van: What’s the address it was sent to?
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: yth st, yth ave.
+update mc_van [animation="Bounce"]
+mc_van: ...\
+(that's the address from before...)
+update mc_van [animation="Bounce"]
+mc_van: And where should we deliver the gift to?
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: zth st, zth ave... My daughter’s party starts within 30 minutes, do you think you can make it in time?
+update mc_van [animation="Bounce"]
+mc_van: Of course! We’ll get it done pronto!
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: Thank you so much! I’ll be sure to pay you once I get off work.

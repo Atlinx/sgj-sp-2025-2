@@ -26,10 +26,16 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
-"mc_van": "res://story/characters/mc_van.dch"
+"mc_van": "res://story/characters/mc_van.dch",
+"npc_client": "res://npc_client.dch"
 }
 directories/dtl_directory={
-"test": "res://story/timelines/test.dtl"
+"mainjob_1": "res://story/timelines/mainjob_1.dtl",
+"mainjob_2": "res://story/timelines/mainjob_2.dtl",
+"mainjob_3": "res://story/timelines/mainjob_3.dtl",
+"mainjob_4": "res://story/timelines/mainjob_4.dtl",
+"test": "res://story/timelines/test.dtl",
+"test2": "res://story/timelines/test2.dtl"
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

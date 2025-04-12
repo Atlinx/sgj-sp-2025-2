@@ -1,0 +1,38 @@
+join mc_van leftmost [animation="Slide In Left" wait="true"]
+join npc_client rightmost [animation="Slide In Up" wait="true"]
+update mc_van [animation="Bounce"]
+mc_van: Orange Odd Jobs, at your service!
+update mc_van [animation="Bounce"]
+mc_van: When you see the orange van rolling down the way, you’ll know your problems will soon fly away!
+update mc_van [animation="Bounce"]
+mc_van: What can we do for you today?
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: Do you guys perhaps do exorcisms?
+update mc_van [animation="Bounce"]
+mc_van: Yes, in fact we do! Could you briefly explain the situation?
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: Every night, my home’s furniture moves around...
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: At first it was small things, like forks taken out of the drawer... but recently even large furniture- like couches and tables- have been getting rearranged!
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: What do you think?
+update mc_van [animation="Bounce"]
+mc_van: A very alarming matter, but nothing we at Orange Odd Jobs can’t handle!
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: You know, that’s what all the other people I called said. Scammer after scammer-
+update mc_van [animation="Bounce"]
+mc_van: How’s this\: we’ll head over to the site and give it our best shot. And, if things don’t get resolved, you don’t have to pay us!
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: Sounds like a good deal so far. What’s the catch?
+update mc_van [animation="Bounce"]
+mc_van: There is only one condition.
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: ...what is it?
+update mc_van [animation="Bounce"]
+mc_van: Could you leave the premises while we investigate?
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: Ah sure, I’m at work anyways. The address is at yth st & yth ave.
+update mc_van [animation="Bounce"]
+mc_van: We’ll be there and we won't be square!
+update npc_client [animation="Shake X" length="0.1"]
+npc_client: Okay, good luck!

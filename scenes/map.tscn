@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://gd7xxdx4861t"]
+[gd_scene load_steps=31 format=4 uid="uid://gd7xxdx4861t"]
 
 [ext_resource type="Script" uid="uid://cntgecfdu4f5g" path="res://scripts/map.gd" id="1_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbgi4"]
@@ -26,6 +26,8 @@
 [ext_resource type="PackedScene" uid="uid://cokowou4qfaag" path="res://prefabs/managers/transition_manager.tscn" id="21_jscy8"]
 [ext_resource type="PackedScene" uid="uid://cdskjubf08vu1" path="res://prefabs/target_quest_spot.tscn" id="21_y2ir2"]
 [ext_resource type="Script" uid="uid://tpetqqwwct8r" path="res://scripts/quest/quest_interact_action.gd" id="22_30iet"]
+[ext_resource type="Resource" uid="uid://bewgr57lj1b5g" path="res://quests/picking_up_litter.tres" id="24_4o3w1"]
+[ext_resource type="Resource" uid="uid://dtscre108ivgp" path="res://story/timelines/test2.dtl" id="25_6ek7f"]
 [ext_resource type="PackedScene" uid="uid://dntuhqcyq6qj6" path="res://prefabs/managers/quests_manager.tscn" id="25_mkblt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
@@ -204,6 +206,9 @@ theme_override_constants/paragraph_spacing = -1
 theme_override_fonts/font = ExtResource("5_2f3dj")
 theme_override_font_sizes/font_size = 11
 text = "downtown lane"
+
+[node name="Office" parent="World/Map" instance=ExtResource("9_gqmmt")]
+position = Vector2(-56, -88)
 
 [node name="Content" type="Node2D" parent="World"]
 y_sort_enabled = true
@@ -488,6 +493,7 @@ position = Vector2(144, 24)
 [node name="Quests" type="Node2D" parent="World"]
 
 [node name="IntroQuestRunner" type="Node2D" parent="World/Quests"]
+visible = false
 script = ExtResource("20_y2ir2")
 quest = ExtResource("21_5u2yt")
 metadata/_custom_type_script = "uid://1h4e4u5r216m"
@@ -600,8 +606,84 @@ timeline = ExtResource("7_vxglm")
 metadata/_custom_type_script = "uid://khek842hayn8"
 metadata/_edit_lock_ = true
 
+[node name="PickingUpLitterRunner" type="Node2D" parent="World/Quests"]
+script = ExtResource("20_y2ir2")
+quest = ExtResource("24_4o3w1")
+metadata/_custom_type_script = "uid://1h4e4u5r216m"
+
+[node name="Action1" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
+position = Vector2(-80, 32)
+script = ExtResource("22_30iet")
+mode = 1
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action1" instance=ExtResource("21_y2ir2")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action1/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("25_6ek7f")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="Action2" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
+position = Vector2(-64, 88)
+script = ExtResource("22_30iet")
+mode = 1
+prereq_actions = Array[String](["Action1"])
+choice_actions = Array[String](["Action3", "Action4"])
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action2" instance=ExtResource("21_y2ir2")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action2/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("25_6ek7f")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="Action3" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
+position = Vector2(-8, 56)
+script = ExtResource("22_30iet")
+mode = 1
+prereq_actions = Array[String](["Action2"])
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action3" instance=ExtResource("21_y2ir2")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action3/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("25_6ek7f")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="Action4" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
+position = Vector2(40, 120)
+script = ExtResource("22_30iet")
+mode = 1
+prereq_actions = Array[String](["Action2"])
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action4" instance=ExtResource("21_y2ir2")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action4/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("25_6ek7f")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="Action5" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
+position = Vector2(72, 56)
+script = ExtResource("22_30iet")
+mode = 1
+prereq_actions = Array[String](["Action3:g1", "Action4:g2"])
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/Action5" instance=ExtResource("21_y2ir2")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/Action5/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("25_6ek7f")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50
+visible = false
 
 [node name="QuitPanel" type="MarginContainer" parent="CanvasLayer"]
 offset_right = 192.0
