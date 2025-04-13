@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://cxklblgls3ndv"]
+
+[ext_resource type="Script" uid="uid://sn0ok1t3ildi" path="res://scripts/quest/quest.gd" id="1_4a6w5"]
+[ext_resource type="Resource" uid="uid://dgvcjg3b4c8dq" path="res://quests/stop_robbery.tres" id="2_4a6w5"]
+
+[resource]
+script = ExtResource("1_4a6w5")
+name = "Ghost Therapy"
+description = "Send away the ghost that’s haunting main st. and beachside ave!"
+prerequisites = Array[ExtResource("1_4a6w5")]([ExtResource("2_4a6w5")])
+metadata/_custom_type_script = "uid://sn0ok1t3ildi"

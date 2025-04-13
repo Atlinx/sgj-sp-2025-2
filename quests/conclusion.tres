@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://d4c7f078785pk"]
+
+[ext_resource type="Script" uid="uid://sn0ok1t3ildi" path="res://scripts/quest/quest.gd" id="1_w2rj5"]
+[ext_resource type="Resource" uid="uid://dedt3nswjxxcw" path="res://quests/present_delivery.tres" id="2_bh7wu"]
+
+[resource]
+script = ExtResource("1_w2rj5")
+name = "Conclusion"
+description = "All proceeds go to charity! Drop off your earnings at Green Organization. After all, you have no use for human currency."
+prerequisites = Array[ExtResource("1_w2rj5")]([ExtResource("2_bh7wu")])
+metadata/_custom_type_script = "uid://sn0ok1t3ildi"

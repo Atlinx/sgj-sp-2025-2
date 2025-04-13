@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://gd7xxdx4861t"]
+[gd_scene load_steps=42 format=4 uid="uid://gd7xxdx4861t"]
 
 [ext_resource type="Script" uid="uid://cntgecfdu4f5g" path="res://scripts/map.gd" id="1_jyhfs"]
 [ext_resource type="AudioStream" uid="uid://c1rxny5ww3cff" path="res://assets/sounds/[Zenless Zone Zero OST] 60 Fantasy.mp3" id="1_tbgi4"]
@@ -22,14 +22,24 @@
 [ext_resource type="Theme" uid="uid://ckhnb04es20vb" path="res://assets/game_theme.tres" id="20_4b7dj"]
 [ext_resource type="Script" uid="uid://1h4e4u5r216m" path="res://scripts/quest/quest_runner.gd" id="20_y2ir2"]
 [ext_resource type="PackedScene" uid="uid://br63gulbpuafg" path="res://prefabs/managers/game_manager.tscn" id="20_yc10j"]
-[ext_resource type="Resource" uid="uid://dog4n3tirmxnu" path="res://quests/intro_quest.tres" id="21_5u2yt"]
+[ext_resource type="Resource" uid="uid://bewgr57lj1b5g" path="res://quests/picking_up_litter.tres" id="21_4qxv8"]
 [ext_resource type="PackedScene" uid="uid://cokowou4qfaag" path="res://prefabs/managers/transition_manager.tscn" id="21_jscy8"]
-[ext_resource type="PackedScene" uid="uid://cdskjubf08vu1" path="res://prefabs/target_quest_spot.tscn" id="21_y2ir2"]
 [ext_resource type="Script" uid="uid://tpetqqwwct8r" path="res://scripts/quest/quest_interact_action.gd" id="22_30iet"]
+[ext_resource type="PackedScene" uid="uid://cdskjubf08vu1" path="res://prefabs/target_quest_spot.tscn" id="23_4qxv8"]
 [ext_resource type="PackedScene" uid="uid://cau4xfy0443ty" path="res://prefabs/quest_actions/quest_minigame_action.tscn" id="24_fq663"]
+[ext_resource type="Resource" path="res://story/timelines/mainjob_1.dtl" id="24_mniao"]
 [ext_resource type="PackedScene" uid="uid://dntuhqcyq6qj6" path="res://prefabs/managers/quests_manager.tscn" id="25_mkblt"]
 [ext_resource type="Script" uid="uid://dkh83b184ko0h" path="res://scripts/interact_ui.gd" id="26_6ek7f"]
+[ext_resource type="Resource" uid="uid://dgvcjg3b4c8dq" path="res://quests/stop_robbery.tres" id="26_mniao"]
+[ext_resource type="Resource" path="res://story/timelines/mainjob_2.dtl" id="27_yfm5w"]
+[ext_resource type="Resource" uid="uid://cxklblgls3ndv" path="res://quests/ghost_therapy.tres" id="28_081xv"]
+[ext_resource type="Resource" uid="uid://dedt3nswjxxcw" path="res://quests/present_delivery.tres" id="29_12q1p"]
+[ext_resource type="Resource" path="res://story/timelines/mainjob_3.dtl" id="29_cgoaf"]
 [ext_resource type="Script" uid="uid://dvomihqanpwq7" path="res://scripts/minigame_manager.gd" id="30_4qxv8"]
+[ext_resource type="Resource" path="res://story/timelines/mainjob_4.dtl" id="30_lhdcv"]
+[ext_resource type="Resource" uid="uid://d4c7f078785pk" path="res://quests/conclusion.tres" id="32_1qn5a"]
+[ext_resource type="Resource" path="res://assets/sprites/mainjob_4_epilogue.dtl" id="32_leq5k"]
+[ext_resource type="Resource" path="res://assets/sfx/voices/conclusion.dtl" id="33_leq5k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
 shader = ExtResource("4_tefeu")
@@ -196,6 +206,17 @@ theme_override_constants/paragraph_spacing = -1
 theme_override_fonts/font = ExtResource("5_2f3dj")
 theme_override_font_sizes/font_size = 11
 text = "blue oak ln."
+
+[node name="StreetName6" type="Label" parent="World/Map/Names/StreetVertical"]
+offset_left = 304.0
+offset_top = -120.0
+offset_right = 387.0
+offset_bottom = -107.0
+rotation = 1.5708
+theme_override_constants/paragraph_spacing = -1
+theme_override_fonts/font = ExtResource("5_2f3dj")
+theme_override_font_sizes/font_size = 11
+text = "beachside ave."
 
 [node name="StreetName5" type="Label" parent="World/Map/Names/StreetVertical"]
 offset_left = 112.0
@@ -490,36 +511,151 @@ position = Vector2(144, 24)
 
 [node name="Quests" type="Node2D" parent="World"]
 
-[node name="IntroQuestRunner" type="Node2D" parent="World/Quests"]
+[node name="PickingUpLitterRunner" type="Node2D" parent="World/Quests"]
 script = ExtResource("20_y2ir2")
-quest = ExtResource("21_5u2yt")
+quest = ExtResource("21_4qxv8")
 reparent_children = true
 metadata/_custom_type_script = "uid://1h4e4u5r216m"
 
-[node name="StartDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner"]
-position = Vector2(8, 24)
+[node name="IntroDialog" type="Node2D" parent="World/Quests/PickingUpLitterRunner"]
+position = Vector2(-16, -8)
 script = ExtResource("22_30iet")
 mode = 2
-description = "Start dialogue desc"
-choice_actions = Array[String](["GotoPoint1", "GotoPoint2"])
+description = "Head back to base, there's a call waiting!"
 metadata/_custom_type_script = "uid://tpetqqwwct8r"
 
-[node name="QuestInteractable" parent="World/Quests/IntroQuestRunner/StartDialogue" instance=ExtResource("21_y2ir2")]
-is_oneshot = true
-metadata/_edit_lock_ = true
+[node name="TargetQuestSpot" parent="World/Quests/PickingUpLitterRunner/IntroDialog" instance=ExtResource("23_4qxv8")]
 
-[node name="InteractDialogue" type="Node2D" parent="World/Quests/IntroQuestRunner/StartDialogue/QuestInteractable"]
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/PickingUpLitterRunner/IntroDialog/TargetQuestSpot"]
 script = ExtResource("6_2wyq8")
-timeline = ExtResource("7_vxglm")
+timeline = ExtResource("24_mniao")
 metadata/_custom_type_script = "uid://khek842hayn8"
-metadata/_edit_lock_ = true
 
-[node name="PlayTest" parent="World/Quests/IntroQuestRunner" instance=ExtResource("24_fq663")]
+[node name="StartMinigame" parent="World/Quests/PickingUpLitterRunner" instance=ExtResource("24_fq663")]
 position = Vector2(-8, 128)
-minigame = "test_minigame"
-description = "Test the game!"
+minigame = "pickup_litter_game"
+description = "Head to the park!"
 is_terminal = true
-prereq_actions = Array[String](["StartDialogue"])
+prereq_actions = Array[String](["IntroDialog"])
+
+[node name="StopRobberyRunner" type="Node2D" parent="World/Quests"]
+script = ExtResource("20_y2ir2")
+quest = ExtResource("26_mniao")
+reparent_children = true
+metadata/_custom_type_script = "uid://1h4e4u5r216m"
+
+[node name="IntroDialog" type="Node2D" parent="World/Quests/StopRobberyRunner"]
+position = Vector2(-40, -8)
+script = ExtResource("22_30iet")
+mode = 2
+description = "Head back to base, there's a call waiting!"
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/StopRobberyRunner/IntroDialog" instance=ExtResource("23_4qxv8")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/StopRobberyRunner/IntroDialog/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("27_yfm5w")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="StartMinigame" parent="World/Quests/StopRobberyRunner" instance=ExtResource("24_fq663")]
+position = Vector2(-216, 184)
+minigame = "robbery_game"
+description = "Head to Blue Oak Lane!"
+is_terminal = true
+prereq_actions = Array[String](["IntroDialog"])
+
+[node name="GhostTherapyRunner" type="Node2D" parent="World/Quests"]
+position = Vector2(-32, 40)
+script = ExtResource("20_y2ir2")
+quest = ExtResource("28_081xv")
+reparent_children = true
+metadata/_custom_type_script = "uid://1h4e4u5r216m"
+
+[node name="IntroDialog" type="Node2D" parent="World/Quests/GhostTherapyRunner"]
+position = Vector2(72, -48)
+script = ExtResource("22_30iet")
+mode = 2
+description = "Head back to base, there's a call waiting!"
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/GhostTherapyRunner/IntroDialog" instance=ExtResource("23_4qxv8")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/GhostTherapyRunner/IntroDialog/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("29_cgoaf")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="StartMinigame" parent="World/Quests/GhostTherapyRunner" instance=ExtResource("24_fq663")]
+position = Vector2(328, -112)
+minigame = "robbery_game"
+description = "Head to Beachside Ave!"
+is_terminal = true
+prereq_actions = Array[String](["IntroDialog"])
+
+[node name="PresentDeliveryRunner" type="Node2D" parent="World/Quests"]
+position = Vector2(-32, 40)
+script = ExtResource("20_y2ir2")
+quest = ExtResource("29_12q1p")
+reparent_children = true
+metadata/_custom_type_script = "uid://1h4e4u5r216m"
+
+[node name="IntroDialog" type="Node2D" parent="World/Quests/PresentDeliveryRunner"]
+position = Vector2(-184, -48)
+script = ExtResource("22_30iet")
+mode = 2
+description = "Visit Red Corporation's office!"
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/PresentDeliveryRunner/IntroDialog" instance=ExtResource("23_4qxv8")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/PresentDeliveryRunner/IntroDialog/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("30_lhdcv")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="StartMinigame" parent="World/Quests/PresentDeliveryRunner" instance=ExtResource("24_fq663")]
+position = Vector2(-312, 144)
+minigame = "platformer_game"
+description = "Deliver the gift to Blue Corporation!"
+prereq_actions = Array[String](["IntroDialog"])
+
+[node name="EpilogueDialog" type="Node2D" parent="World/Quests/PresentDeliveryRunner"]
+position = Vector2(-216, -176)
+script = ExtResource("22_30iet")
+mode = 2
+description = "Head to the red house on the north-west side of town!"
+is_terminal = true
+prereq_actions = Array[String](["StartMinigame"])
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/PresentDeliveryRunner/EpilogueDialog" instance=ExtResource("23_4qxv8")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/PresentDeliveryRunner/EpilogueDialog/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("32_leq5k")
+metadata/_custom_type_script = "uid://khek842hayn8"
+
+[node name="ConclusionRunner" type="Node2D" parent="World/Quests"]
+position = Vector2(-32, 40)
+script = ExtResource("20_y2ir2")
+quest = ExtResource("32_1qn5a")
+reparent_children = true
+metadata/_custom_type_script = "uid://1h4e4u5r216m"
+
+[node name="IntroDialog" type="Node2D" parent="World/Quests/ConclusionRunner"]
+position = Vector2(32, 176)
+script = ExtResource("22_30iet")
+mode = 2
+is_terminal = true
+metadata/_custom_type_script = "uid://tpetqqwwct8r"
+
+[node name="TargetQuestSpot" parent="World/Quests/ConclusionRunner/IntroDialog" instance=ExtResource("23_4qxv8")]
+
+[node name="InteractDialogue" type="Node2D" parent="World/Quests/ConclusionRunner/IntroDialog/TargetQuestSpot"]
+script = ExtResource("6_2wyq8")
+timeline = ExtResource("33_leq5k")
+metadata/_custom_type_script = "uid://khek842hayn8"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 50
