@@ -58,9 +58,9 @@ Mom shouldn't have done so many night shifts, and left you alone.
 				update npc_ghost [animation="Heartbeat"]
 				npc_ghost: We wanted to make things up to her.
 				update npc_ghost [animation="Heartbeat"]
-				npc_ghost: Last year, she had us promise her that we would spend her next birthday together. 
+				npc_ghost: Last year, she had us promise her that we would spend her next birthday together.
 				update npc_ghost [animation="Heartbeat"]
-				npc_ghost: But... it was a promise that I couldn’t keep, as you can see. 
+				npc_ghost: But... it was a promise that I couldn’t keep, as you can see.
 				update npc_ghost [animation="Heartbeat"]
 				npc_ghost: They... my husband and my daughter... they were my greatest treasures. The greatest gifts the world gave to me.
 				update npc_ghost [animation="Heartbeat"]
@@ -81,9 +81,9 @@ Mom shouldn't have done so many night shifts, and left you alone.
 					update mc_van [animation="Bounce"]
 					mc_van: When they encounter grief and sadness, they are able to come out on top and live stronger than before.
 					update npc_ghost [animation="Heartbeat"]
-					npc_ghost: But... moving out of our home... 
+					npc_ghost: But... moving out of our home...
 					update npc_ghost [animation="Heartbeat"]
-					npc_ghost: I know this house would not sell for much. 
+					npc_ghost: I know this house would not sell for much.
 					update npc_ghost [animation="Heartbeat"]
 					npc_ghost: It's because they were mourning my passing that they would have to go through the trouble.
 					- Reassure her
@@ -92,7 +92,7 @@ Mom shouldn't have done so many night shifts, and left you alone.
 						update mc_van [animation="Bounce"]
 						mc_van: To me it sounds like he would not irresponsible with these big decisions. What do you think?
 						update npc_ghost [animation="Heartbeat"]
-						npc_ghost: You're right. He wouldn't do something like that. 
+						npc_ghost: You're right. He wouldn't do something like that.
 						- Reason with her
 							update mc_van [animation="Bounce"]
 							mc_van: Then, given that he did move, doesn't it indicate that things have gotten better?
@@ -104,14 +104,15 @@ Mom shouldn't have done so many night shifts, and left you alone.
 								update mc_van [animation="Bounce"]
 								mc_van: Yes. I firmly believe so.
 								update mc_van [animation="Bounce"]
-								mc_van: While your passing surely was mourned, I am sure they have grown closer.
+								mc_van: While they were the greatest gifts to you, you gave them a very important gift too.
 								update mc_van [animation="Bounce"]
-								mc_van: While they were the greatest gifts to you, 
+								mc_van: So... even though your passing brought them grief, they would be able to treasure each other more.
 								update npc_ghost [animation="Heartbeat"]
-								npc_ghost: I want to believe that too.
+								npc_ghost: I like the sound of that.
 								update npc_ghost [animation="Heartbeat"]
 								npc_ghost: I think... I can rest easy now.
 								- Send her off
 									update mc_van [animation="Bounce"]
-									mc_van: Have a peaceful rest. 
+									mc_van: Have a peaceful rest.
 									leave npc_ghost [animation="Fade Out"]
+									leave mc_van [animation="Slide Out Right" length="3.0" wait="true"]
