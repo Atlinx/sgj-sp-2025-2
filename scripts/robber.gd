@@ -51,7 +51,6 @@ func _ready() -> void:
 	shoot_timer.start()
 
 func _process(delta: float) -> void:
-	print(global_position.x)
 	if global_position.x > 7500:
 		return
 	# 只处理水平移动

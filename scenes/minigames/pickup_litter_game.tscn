@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=4 uid="uid://7rgt7ap4j2im"]
 
-[ext_resource type="Script" uid="uid://c3k26oegk0tn1" path="res://scripts/pickup_litter_game.gd" id="1_6vjdd"]
+[ext_resource type="Script" path="res://scripts/pickup_litter_game.gd" id="1_6vjdd"]
 [ext_resource type="PackedScene" uid="uid://cm5xrl643rut2" path="res://prefabs/minigames/litter/large_bottle.tscn" id="2_1kjpx"]
 [ext_resource type="TileSet" uid="uid://cagocvkkqqagt" path="res://assets/map_tile_set.tres" id="2_aefbl"]
 [ext_resource type="Script" uid="uid://b1aqwdh3c27kr" path="res://scripts/litter_player.gd" id="3_aefbl"]
@@ -183,7 +183,7 @@ size = Vector2(14, 13)
 script = ExtResource("1_6vjdd")
 level_layer = NodePath("World/Map/BGLayer")
 litter_scenes = Array[PackedScene]([ExtResource("2_1kjpx"), ExtResource("6_aefbl"), ExtResource("4_k4dh2"), ExtResource("5_h3jrh"), ExtResource("6_divjf"), ExtResource("7_vjmcc")])
-litter_amounts = 40
+litter_amounts = 160
 
 [node name="World" type="Node2D" parent="."]
 

@@ -13,6 +13,7 @@ static var global: TransitionManager
 var current_scene: String:
 	get:
 		return get_tree().current_scene.scene_file_path.get_file().get_basename()
+var is_transitioning: bool
 
 @export var _overlay_texture: OverlayTexture
 @export var _transition_in_sfx: RandomAudioStreamPlayer
@@ -53,6 +54,7 @@ func transition_to(scene):
 		_trans_tween.kill()
 	if scene is String:
 		scene = load("res://scenes/" + scene + ".tscn")
+	is_transitioning = true
 	assert(scene is PackedScene)
 	_canvas_layer.visible = true
 	on_transition_start.emit()
@@ -76,6 +78,7 @@ func transition_to(scene):
 	await get_tree().create_timer(1.0).timeout
 	on_transition_end.emit()
 	_canvas_layer.visible = false
+	is_transitioning = false
 
 
 func _notification(what: int) -> void:

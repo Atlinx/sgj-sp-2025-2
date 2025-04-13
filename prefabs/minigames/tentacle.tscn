@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmu86sperxtsq"]
 
-[ext_resource type="Script" uid="uid://cb24tinecym05" path="res://scripts/tentacle.gd" id="1_spd53"]
+[ext_resource type="Script" path="res://scripts/tentacle.gd" id="1_spd53"]
 [ext_resource type="Texture2D" uid="uid://bm4h60gnd2dnt" path="res://assets/sprites/tentacle_Reach.png" id="2_tfhu0"]
 
 [node name="Tentacle" type="Line2D" node_paths=PackedStringArray("collision_shape", "sprite2D") groups=["hand"]]
@@ -9,6 +9,7 @@ width = 100.0
 default_color = Color(1, 1, 1, 0)
 script = ExtResource("1_spd53")
 max_length = 50.0
+extend_duration = 0.3
 collision_shape = NodePath("Area2D/CollisionShape2D")
 sprite2D = NodePath("Sprite2D")
 
