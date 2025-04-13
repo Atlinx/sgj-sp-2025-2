@@ -38,7 +38,7 @@ func _ready() -> void:
 	_prev_position = position
 
 func _process(delta: float) -> void:
-	if win_score >= 20:
+	if score >= win_score:
 		var manager = MinigameManager.global
 		manager.minigame_complete()
 	$"../../CanvasLayer/Label".text = "score: "+str(score)
