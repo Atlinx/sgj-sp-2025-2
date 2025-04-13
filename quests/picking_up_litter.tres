@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_ooqsg")
 name = "Picking up Litter"
-description = "Clean up the litter at the park across from HQ!"
+description = "Clean up the litter "
 prerequisites = Array[ExtResource("1_ooqsg")]([])
 metadata/_custom_type_script = "uid://sn0ok1t3ildi"
