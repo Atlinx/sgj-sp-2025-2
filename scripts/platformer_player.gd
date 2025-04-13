@@ -73,5 +73,6 @@ func _physics_process(delta):
 
 
 func _on_the_end_body_entered(body: Node2D) -> void:
-	var manager = MinigameManager.global
-	manager.minigame_complete()
+	if body.is_in_group("player"):
+		var manager = MinigameManager.global
+		manager.minigame_complete()
