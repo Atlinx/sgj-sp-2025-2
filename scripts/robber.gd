@@ -115,7 +115,8 @@ func _on_shoot_timer_timeout():
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("hand"):
 		queue_free()
-		pass
+		var manager = MinigameManager.global
+		manager.minigame_complete()
 
 
 

@@ -101,8 +101,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		_anim_player.play("demege")
 		var tween = create_tween()
 		var bu_volocity = area.get_parent().velocity
-		tween.tween_property(self,"position:x",position.x + bu_volocity.x*0.1,0.1 )
-		tween.tween_property(self,"position:y",position.y - bu_volocity.y*0.1,0.1 )
+		tween.tween_property(self,"position:x",position.x + bu_volocity.x*0.05,0.1 )
+		tween.tween_property(self,"position:y",position.y - bu_volocity.y*0.05,0.1 )
 
 func on_slow_down():
 	speed = slow_down_speed
