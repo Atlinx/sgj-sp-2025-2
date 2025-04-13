@@ -4,40 +4,37 @@
 &"_translation_id": "",
 &"color": Color(1, 1, 1, 1),
 &"custom_info": {
-"prefix": "",
 "sound_mood_default": "default",
 "sound_moods": {
 "default": {
 "mode": 1,
 "name": "default",
-"pitch_base": 1.1,
+"pitch_base": 1.0,
 "pitch_variance": 0.1,
 "skip_characters": 5.0,
-"sound_path": "res://assets/sfx/voices/voice_1.wav",
+"sound_path": "res://assets/sfx/voices/voice_3.wav",
 "volume_base": -10.0,
 "volume_variance": 0.0
 }
 },
-"style": "",
-"suffix": ""
+"style": ""
 },
 &"default_portrait": "normal",
 &"description": "",
-&"display_name": "Van-ish",
+&"display_name": "Client",
 &"mirror": false,
 &"nicknames": [""],
 &"offset": Vector2(0, 0),
 &"portraits": {
 "normal": {
 "export_overrides": {
-"image": "\"res://assets/sprites/portrait_van.png\""
+"image": "\"res://assets/sprites/portrait_client.png\""
 },
 "ignore_char_scale": false,
-"mirror": false,
-"offset": Vector2(50, -50),
-"scale": 7.77,
-"scene": "",
-"sound_mood": "default"
+"mirror": true,
+"offset": Vector2(-90, -50),
+"scale": 5.0,
+"scene": ""
 }
 },
 &"scale": 1.0

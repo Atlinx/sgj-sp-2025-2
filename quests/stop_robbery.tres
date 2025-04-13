@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://dgvcjg3b4c8dq"]
+
+[ext_resource type="Script" uid="uid://sn0ok1t3ildi" path="res://scripts/quest/quest.gd" id="1_715nh"]
+[ext_resource type="Resource" uid="uid://bewgr57lj1b5g" path="res://quests/picking_up_litter.tres" id="2_teqff"]
+
+[resource]
+script = ExtResource("1_715nh")
+name = "Stop Robbery"
+description = "There's a robber on the loose. Chase the thief down Blue Oak lane!"
+prerequisites = Array[ExtResource("1_715nh")]([ExtResource("2_teqff")])
+metadata/_custom_type_script = "uid://sn0ok1t3ildi"

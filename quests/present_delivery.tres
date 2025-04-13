@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://dedt3nswjxxcw"]
+
+[ext_resource type="Script" uid="uid://sn0ok1t3ildi" path="res://scripts/quest/quest.gd" id="1_5byyn"]
+[ext_resource type="Resource" uid="uid://cxklblgls3ndv" path="res://quests/ghost_therapy.tres" id="2_5byyn"]
+
+[resource]
+script = ExtResource("1_5byyn")
+name = "Present Delivery"
+description = "Deliver the “Gift” from Red Corporation on South Park Drive!"
+prerequisites = Array[ExtResource("1_5byyn")]([ExtResource("2_5byyn")])
+metadata/_custom_type_script = "uid://sn0ok1t3ildi"

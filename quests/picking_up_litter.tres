@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://bewgr57lj1b5g"]
+
+[ext_resource type="Script" uid="uid://sn0ok1t3ildi" path="res://scripts/quest/quest.gd" id="1_ooqsg"]
+
+[resource]
+script = ExtResource("1_ooqsg")
+name = "Picking up Litter"
+description = "Clean up the litter at the park across from HQ!"
+prerequisites = Array[ExtResource("1_ooqsg")]([])
+metadata/_custom_type_script = "uid://sn0ok1t3ildi"

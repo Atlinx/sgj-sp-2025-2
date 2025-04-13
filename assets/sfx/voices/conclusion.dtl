@@ -1,0 +1,14 @@
+[background arg="res://assets/sprites/conclusion_f1.png" fade="0.0"]
+mc_van: Another day, gone in a blink.\
+It’s a busy life but I’m happy, I think!
+[background arg="res://assets/sprites/conclusion_f2.png" fade="0.0"]
+mc_van: Litter dropped and litter collected...\
+Things stolen and things protected...
+mc_van: Ghosts mourned and ghosts freed...\
+Gifts lost and gifts meet...
+[background arg="res://assets/sprites/conclusion_f3.png" fade="0.0"]
+mc_van: Problems come and problems go!\
+This troublesome cycle isn’t all bad, you know.
+[background arg="res://assets/sprites/conclusion_f4.png" fade="0.0"]
+mc_van: While yesterday and yester-moment might be long gone,\
+The ever-changing tomorrow will always start at dawn!
