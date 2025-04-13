@@ -38,8 +38,9 @@ func _ready() -> void:
 	_prev_position = position
 
 func _process(delta: float) -> void:
-	if win_score >= 20:
-		pass
+	if score >= win_score:
+		var manager = MinigameManager.global
+		manager.minigame_complete()
 	$"../../CanvasLayer/Label".text = "score: "+str(score)
 	
 	# 计算当前速度

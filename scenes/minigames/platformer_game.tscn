@@ -194,7 +194,7 @@ position = Vector2(479, -364)
 scale = Vector2(2, 2)
 texture = ExtResource("3_kiskm")
 
-[node name="PlatformerPlayer" type="CharacterBody2D" parent="World" node_paths=PackedStringArray("_flip_sprite", "_anim_player")]
+[node name="PlatformerPlayer" type="CharacterBody2D" parent="World" node_paths=PackedStringArray("_flip_sprite", "_anim_player") groups=["player"]]
 position = Vector2(467, 254)
 script = ExtResource("3_peu7t")
 _flip_sprite = NodePath("FlipSprite")
