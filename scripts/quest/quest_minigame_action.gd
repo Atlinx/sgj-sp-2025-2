@@ -27,11 +27,12 @@ func _ready():
 func enable_action():
 	await get_tree().process_frame
 	# Try reading our query if this isn't our first time loading the action
-	var result = MinigameManager.global.get_minigame_result_query(str(get_path()))
+	var unique_name = quest_runner.name + "/" + action_name
+	var result = MinigameManager.global.get_minigame_result_query(unique_name)
 	if result.size() > 0:
 		_check_completed(result[0]["minigame"], result[0]["win"])
 	# Add listener to MinigameManager, if it doesn't exist
-	MinigameManager.global.add_minigame_result_query(str(get_path()))
+	MinigameManager.global.add_minigame_result_query(unique_name)
 
 
 func _check_completed(_minigame: String, win: bool):

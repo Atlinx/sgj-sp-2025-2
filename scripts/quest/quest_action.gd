@@ -6,6 +6,7 @@ extends Node2D
 signal completed()
 
 
+var quest_runner: QuestRunner
 var action_name: String
 @export_multiline var description: String
 # Will completing this action count as completing the quest?

@@ -378,7 +378,7 @@ shape = SubResource("RectangleShape2D_0l6gc")
 position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_0l6gc")
 
-[node name="Hand" type="Sprite2D" parent="World/RobberyPlayer" groups=["hand"]]
+[node name="Hand" type="Sprite2D" parent="World/RobberyPlayer" groups=["hand_2"]]
 position = Vector2(15, -5)
 rotation = 1.58489
 texture = ExtResource("6_mlx7h")

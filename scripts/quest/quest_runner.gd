@@ -40,6 +40,7 @@ func _ready() -> void:
 				if choice not in choices_to_root_action:
 					choices_to_root_action[choice] = [] 
 				choices_to_root_action[choice].append(child)
+			child.quest_runner = self
 			child.completed.connect(_on_quest_completed_action.bind(child)) # Add completed actions to quest
 			actions.append(child)
 			if reparent_children and Map.global:
